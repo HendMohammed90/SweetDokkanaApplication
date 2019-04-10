@@ -1,0 +1,287 @@
+/**Start my framework**/
+* {
+    text-transform: capitalize;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+  }
+  a:hover{
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+  }
+  
+  /* my palet 
+  #6c757d gray
+  #D7263D red
+  #F46036  orange 
+  #1B998B blee green 
+  #C5D86D green
+  #571F4E purpel
+  #4f111969
+   */
+  /* font-family: "Shrikhand", cursive;  */
+  /* This font for headings  */
+  
+  /**End my framework**/
+  /**Start Main Rulez**/
+  
+  body {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    overflow-x: hidden;
+    font-family: "Amaranth", sans-serif;
+  }
+  /* start The scrollbar part */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #720e64;
+    -webkit-box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: white;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  /*  end The scrollbar part */
+  .img-sm{
+    width: 60px;
+    height: 60px;
+  }
+  /**End Main Rulez**/
+  
+  /* start the navbar */
+  .navbar {
+    background: #b3979f;
+  }
+  .navbar .navbar-brand {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px #c5d86d;
+    font-family: "Handlee", cursive;
+    position: relative;
+  }
+  .navbar .navbar-brand:hover {
+    color: white;
+  }
+  .navbar .navbar-brand::before {
+    content: url(../img/logo1.png);
+    position: absolute;
+    top: 4px;
+    left: -63px;
+  }
+  .navbar .navbar-brand::after {
+    content: url(../img/logo2.png);
+    position: absolute;
+    top: 4px;
+    right: -62px;
+  }
+  .navbar-light .navbar-nav a.nav-link:hover {
+    color: #5c004f;
+    border-bottom: 1px solid white;
+    transition: 0.3s ease-in-out;
+  }
+  .navbar-light .navbar-nav a.active{
+    color: #5c004f !important;
+    border-bottom: 1px solid white;
+    transition: 0.3s ease-in-out;
+  }
+  .navbar-light .navbar-nav .nav-link {
+    color: white;
+    margin-right: 0.8rem;
+  }
+  .navbar-light .navbar-nav .nav-link i {
+    padding-right: 0.5rem;
+  }
+  /* End the navbar */
+  
+  /* start side nanbar  */
+  .side-navbar {
+    background: #5c004f;
+    color: white;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -191px;
+    padding: 1rem;
+    width: 10%;
+    z-index: 999;
+    border-right:1.5px solid white;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+  .side-navbar i.control-icon {
+    background: #5c004f;
+    position: absolute;
+    top: 0;
+    right: -56px;
+    padding: 1.5rem 1rem;
+    border: 1px solid #7d7d7e;
+    font-size: 1.5rem;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    cursor: pointer;
+  }
+  .side-navbar .admin {
+    display: block;
+    height: auto;
+    padding: 2rem 1.625rem 0rem 1.188rem;
+  }
+  .side-navbar .admin .admin-img {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+  }
+  .side-navbar .admin .admin-img img {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    border: 1px solid white;
+  }
+  .side-navbar .admin .admin-name {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: larger;
+  }
+  .side-navbar .admin .admin-name .surname {
+    margin-top: -1rem;
+  }
+  
+  
+  .side-navbar .links ul {
+    list-style: none;
+    font-size: 1.1rem;
+  }
+  .side-navbar .links ul li {
+    line-height: 1.8;
+    opacity: 0.7;
+  }
+  .side-navbar .links ul li.active{
+    opacity: 1;
+  }
+  .side-navbar .links ul li:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  .side-navbar .links ul li a span:first-of-type {
+    display: inline-block;
+  }
+  .side-navbar .footer {
+    position: absolute;
+    bottom: 15px;
+    margin-left: -50px;
+    left: 50%;
+    font-size: 1.2rem;
+  }
+  .side-navbar .footer i {
+    margin-right: 0.5rem;
+    color: white;
+  }
+  .side-navbar .footer i:hover {
+    text-shadow: 6px 6px 9px rgba(0, 0, 0, 0.75);
+    transition: 0.3s ease-in-out;
+  }
+  
+  /* End side navbar */
+  
+  /* start the header */
+  header .header-section {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1rem 0;
+  }
+  header .header-section .col-md-8 h2 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 32px;
+  }
+  header .header-section .col-md-8 h2 i {
+    color: #ee5991;
+  }
+  header > img {
+    z-index: -1;
+    position: absolute;
+    top: 74px;
+    left: 50%;
+    width: 2560px;
+    height: 248px;
+    margin-left: -1315px;
+  }
+  @keyframes zoom {
+    0% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(0.9, 1);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+  header .animation-zoom {
+    animation-name: zoom;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  
+  /* end the header */
+  
+  /* start admin-info section  */
+  #admin-info .container{
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    box-shadow: 0 0 30px 0px #571f4e;
+    padding: 2%;
+  }
+  #admin-info .row form label{
+     color: #5c004f;
+     font-weight: bolder;
+     text-transform: uppercase
+  }
+  #admin-info .edit-form{
+      display: none;
+  }
+ 
+  /* end admin-info section   */
+  
+  /* Start of footer */
+  footer{
+    background-color: #5c004f
+  }
+  
+  /* end of footer */
+  
+  /* -------The meadia queries------- */
+  
+  /* mopile view */
+  @media (max-width: 698px) {}
+    
+  /* small devise */
+  @media (min-width: 699px) {}
+   
+  /* Medium devices (tablets) */
+  
+  @media (min-width: 768px) {}
+   
+  /* Large devices (desktops) */
+  
+  @media (min-width: 992px) {
+    
+  }
+  /* Extra large devices (large desktops) */
+  
+  @media (min-width: 1200px) {
+  }

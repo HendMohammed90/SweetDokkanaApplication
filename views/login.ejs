@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Main meta rulz -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="This Site Rebresent The finall Project For The Company Of Global Dev Gate"
+    />
+    <meta name="Keywords" content="HTML,Css,JavaScript jquery" />
+    <meta name="author" content="Hend Mohammed" />
+    <title>Sweet Dokkana</title>
+    <!-- Nice Icon For the Site -->
+    <link rel="Icon" type="image/png" href="img/project-icon.png" />
+
+    <!-- Nice reset lib -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <!-- font lib for icons -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+      crossorigin="anonymous"
+    />
+    <!-- this is bootstrab link -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <!-- this is fonts form google -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Amaranth|Shrikhand|Handlee"
+      rel="stylesheet"
+    />
+
+    <!-- Main style sheet -->
+    <link rel="stylesheet" href="../../assets/css/login.css" />
+  </head>
+  <body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="content d-flex align-items-center">
+            <div class="row w-100">
+                <div class="col-lg-4 mx-auto">
+                    <div class="form text-left p-5">
+                        <h2>login</h2>
+                        <h4 class="font-weight-light">Hello! let's get started</h4>
+                        <form class="pt-5" method="POST" action="">
+                            <div class="form-group">
+                                <label for="Email">Email</label>
+                                <input type="email" class="form-control" id="Email" name="Email" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <label for="Password">Password</label>
+                                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
+                            </div>
+                            <div class="mt-5">
+                                <button class="btn btn-block btn-warning btn-lg font-weight-medium"  type="supmit">Login</button>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <a href="/forgotPasswoed." class="auth-link text-white">Forgot password?</a>
+                            </div>                 
+                            <div class="mt-3 text-center">
+                              <%if (data){%>
+                                <span id="Error-Message"><%=data%></span>
+                              <%}%>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% include partials/scripts.ejs%>
+    

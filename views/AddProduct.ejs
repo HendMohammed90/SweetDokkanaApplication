@@ -1,0 +1,82 @@
+<% include partials/header.ejs%>
+    <!-- Main style sheet -->
+    <link rel="stylesheet" href="../../assets/css/editProduct.css"/>
+    </head>
+<body>
+    <% include partials/navigation.ejs%>
+    <!-- start edit form -->
+    <section id="editing">
+        <div class="container">
+            <div class="row text-center">
+            <% if(message!=" "){ %>
+                <p class="text-center h5 pt-5"><%=message%></p>
+            <% }%>
+            <div class="col-12">
+                <h2>adjusting your product</h2>
+            </div>
+            </div>
+                
+                <form action="/api/EditeProduct" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="Pro_Name">product name</label>
+                                <input class="form-control" type="text" id="Pro_Name" name="Pro_Name" placeholder="Enter Product Name" >
+                            </div>
+                            <div class="form-group">
+                                <label for="Pro_Description">product description</label>
+                                <input class="form-control" type="text" id="Pro_Description" name="Pro_Description" placeholder="Enter Product Description" >
+                            </div>
+                            <div class="form-group">
+                                <label for="CategoryId">Category</label>
+                                <select class="form-control" id="CategoryId" name="CategoryId" >
+                                    <option selected disabled>Choose</option>
+                                    <option value="5ca10e5e2815061e7d400f79">Western Sweets</option>
+                                    <option value="5ca0cb072815061e7d400f75" >oriental</option>
+                                    <option value="5ca0cb102815061e7d400f76" >cakes</option>
+                                    <option value="5ca0cb162815061e7d400f77" >Pastry</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Pro_Price">product price</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input class="form-control" type="text"  id="Pro_Price" name="Pro_Price" >
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="Pro_IMG">insert product IMG</label>
+                            <div class="custom-file">
+                                <input type="file" id="Pro_IMG" name="Pro_IMG" class="custom-file-input">
+                                <label class="custom-file-label" for="myfile">Choose Image</label>
+                            </div>
+                            </div>
+                            <div class="pattern">
+                            <img src="../assets/imgs/prod-pattern.svg" class="img-fluid" alt="product-image-pattern"/>
+                            </div>
+                        </div>
+                    </div>      
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button class="btn btn-outline-info btn-block" type="submit" value="submit">save</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <a class="btn btn-outline-warning btn-block ">reset <i class="fas fa-redo"></i></a>
+                        </div>
+                    </div>
+                </form>
+           
+          
+        </div>
+    </section>
+    <!-- End edit form -->
+<% include partials/footer.ejs%>
+
+<% include partials/scripts.ejs%>

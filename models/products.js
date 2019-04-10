@@ -3,7 +3,7 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 const {CategorySchema} = require('./categories');
 
-const Product = mongoose.model('Product', new mongoose.Schema({
+const ProductSchema=  new mongoose.Schema({
   Pro_Name: {
     type: String,
     required: true,
@@ -25,8 +25,8 @@ const Product = mongoose.model('Product', new mongoose.Schema({
   },
   Pro_IMG: {
     type: String,
-    minlength: 5,
-    maxlength: 50
+    minlength: 5
+    
   },
   numberInStock: { 
     type: Number, 
@@ -44,12 +44,15 @@ const Product = mongoose.model('Product', new mongoose.Schema({
     default :Date.now
   }
     
-  }));
+  });
+
+const Product = mongoose.model('Product',ProductSchema);
+
   //the reviw must be here ^_^
   
   function validateProduct(product) {
     const schema = {
-      Pro_Name: Joi.string().min(3).required(),
+      Pro_Name: Joi.string().min(3),
       CategoryId: Joi.objectId(),
       numberInStock: Joi.number(),
       Pro_Description: Joi.string(),

@@ -8,48 +8,133 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 require('express-async-errors');
+const multer = require('multer');
+const storage =multer.diskStorage({
+    destination : function(req ,file , cb){
+        cb(null, 'public/assets/imgs/productIMGS/');
+    },
+    filename: function(req ,file,cb){
+        cb(null, new Date().toISOString() + file.originalname)
+    }
+})
+const fileFilter =(req ,file , cb)=>{
+    if(file.mimetype=='image/jpeg'|| file.mimetype=='image/jpg')
+    {
+        cb(null,true)
+    }else{
+        cb(null,false)
+    }
+};
+const upload = multer({
+    storage: storage,
+    fileFilter :fileFilter
 
-router.get('/',async(req, res)=>{     
-    const products = await Product.find();
-    res.send(products);
 });
+
+
+
+router.get('/:pageNo?',async(req, res)=>{   
+   
+    let pageNo = 1;
+    if(req.params.pageNo){
+        pageNo = parseInt(req.params.pageNo)
+    }
+    if(req.params.pageNo==0 ||req.params.pageNo<0) {
+        pageNo = 1
+    }  
+    let q= {
+        skip :5 * (pageNo -1),
+        limit : 5
+    }
+    const products = await Product.find({},{},q);
+    //find total NU of Documants
+    let totalDocs = 0 ;
+    // console.log(products.length);
+    Product.countDocuments({},(err,total)=>{
+
+    }).then((response)=>{
+        totalDocs = parseInt(response);
+        // console.log(response)
+        res.render("catalog.ejs" , 
+        {
+            data :"Welcom To our render Page",
+            title : "Main Page",
+            products :products,
+            total :parseInt(totalDocs),
+            pageNo :pageNo
+        });
+    })
+    // const products = await Product.find({});
+    // res.send(products);
+  
+    // console.log(products);
+});
+
 
 router.get('/Cakes', async(req, res)=>{ 
  
-    const product = await Product.find( { 'Category.CategoryName' : 'cakes' });
+    const products = await Product.find( { 'Category.CategoryName' : 'cakes' });
 
-    if(!product) return res.status(404).send('Product on given Category is not found');
+    if(!products) return res.status(404).send('products on given Category is not found');
     
-    res.send(product);
+    // res.send(product);
+    res.render("catalog.ejs" , 
+        {
+            data :"Welcom To our render Page",
+            title : "Main Page",
+            products :products
+        });
+    console.log(products);
 });
 
 router.get('/Bastry', async(req, res)=>{ 
  
-    const product = await Product.find( { 'Category.CategoryName' : 'Pastry' });
+    const products = await Product.find( { 'Category.CategoryName' : 'Pastry' });
 
-    if(!product) return res.status(404).send('Product on given Category is not found');
+    if(!products) return res.status(404).send('products on given Category is not found');
     
-    res.send(product);
+    // res.send(product);
+    res.render("catalog.ejs" , 
+        {
+            data :"Welcom To our render Page",
+            title : "Main Page",
+            products :products
+        });
+    console.log(products);
 });
 
 
 router.get('/Oriental', async(req, res)=>{ 
  
-    const product = await Product.find( { 'Category.CategoryName' : 'oriental' });
+    const products = await Product.find( { 'Category.CategoryName' : 'oriental' });
 
-    if(!product) return res.status(404).send('Product on given Category is not found');
+    if(!products) return res.status(404).send('products on given Category is not found');
     
-    res.send(product);
+    // res.send(product);
+    res.render("catalog.ejs" , 
+        {
+            data :"Welcom To our render Page",
+            title : "Main Page",
+            products :products
+        });
+    console.log(products);
 });
 
 
 router.get('/Western',async(req, res)=>{ 
  
-    const product = await Product.find( { 'Category.CategoryName' : 'Western Sweets' });
+    const products = await Product.find( { 'Category.CategoryName' : 'Western Sweets' });
 
-    if(!product) return res.status(404).send('Product on given Category is not found');
+    if(!products) return res.status(404).send('products on given Category is not found');
     
-    res.send(product);
+    // res.send(product);
+    res.render("catalog.ejs" , 
+        {
+            data :"Welcom To our render Page",
+            title : "Main Page",
+            products :products
+        });
+    console.log(products);
 });
 
 
@@ -58,8 +143,15 @@ router.get('/:id', async(req, res)=>{
 
     if(!product) return res.status(404).send('Product with given ID is not found');
     
-    res.send(product);
+    // res.send(product);
+    res.render("EditeProduct.ejs" , 
+    {
+        message :"Welcom To our Edite Product Page" ,
+        product :product
+    });
 });
+
+
 
 
 router.post('/',auth ,async(req, res)=>{     
@@ -79,13 +171,20 @@ router.post('/',auth ,async(req, res)=>{
         numberInStock: req.body.numberInStock,
         Pro_Description: req.body.Pro_Description,
         Pro_Price: req.body.Pro_Price,
-        Pro_IMG: req.body.Pro_IMG,
+        Pro_IMG:  req.files.Pro_IMG,
         Status :req.body.Status
     });
 
     await newProduct.save();
      
-    res.send(newProduct);
+    // res.send(newProduct);
+    res.render("EditeProduct.ejs" , 
+        {
+            data :"Welcom To our render Page",
+            title : "Main Page",
+            newProduct :newProduct
+        });
+    console.log(newProduct);
 });
 
 
@@ -117,13 +216,13 @@ router.put('/:id',auth , async(req, res)=>{
 // } , I Can't Ubdate the category of product -_-
 
 
-router.delete('/:id',auth , async(req, res)=>{     
+router.delete('/:id' , async(req, res)=>{     
     //find the Product
     const DeletedProduct = await Product.findByIdAndRemove(req.params.id);
 
-    if(!DeletedProduct) return res.status(404).send('genre is not found');
+    if(!DeletedProduct) return res.status(404).send('Product is not found');
 
-    res.send(DeletedProduct);
+    res.redirect('/api/products');
 } ) 
 
 module.exports = router; 

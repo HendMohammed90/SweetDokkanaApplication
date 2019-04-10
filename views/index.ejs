@@ -1,0 +1,246 @@
+<% include partials/header.ejs%>
+    <!-- Main style sheet -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    </head>
+<body>
+    <% include partials/navigation.ejs%>
+    <!-- start wrapper section -->
+    <section id="content-wrapper">
+        <div class="container statistics">
+            <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="card mb-sm-2">
+                <div class="card-body">
+                    <h6 class="card-title">growth </h6>
+                    <div class="row text-center">
+                    <div class="col-6 border-right">
+                        <h4>63%</h4>
+                        <p>monthly</p>
+                    </div>
+                    <div class="col-6">
+                        <h4>20%</h4>
+                        <p>daily</p>
+                    </div>
+                    </div>
+                    <div class="mt-3">
+                    <div id="chart">
+                        <img src="../assets/imgs/chart1.svg" class="img-fluid">
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card mb-sm-2">
+                <div class="card-body">
+                    <h6 class="card-title">Daily Sales </h6>
+                    <div class="row text-center">
+                    <div class="col-6 border-right">
+                        <h4>$2256</h4>
+                        <p class="text-muted">Totel sales</p>
+                    </div>
+                    <div class="col-6">
+                        <h4>584</h4>
+                        <p class="text-muted">monthly </p>
+                    </div>
+                    </div>
+                    <div class="mt-3">
+                    <div id="chart">
+                        <img src="../assets/imgs/chart3.svg" class="img-fluid">
+                    </div>
+                    </div>
+                </div>
+                </div> 
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card mb-sm-2">
+                <div class="card-body">
+                    <h6 class="card-title">Total Revenue </h6>
+                    <div class="row text-center">
+                    <div class="col-12 border-bottom">
+                        <h4>6,256</h4>
+                        <p class="text-muted">Totel sales</p>
+                    </div>
+                    
+                    </div>
+                    <div class="mt-3">
+                    <div id="chart">
+                        <img src="../assets/imgs/chart4.svg" class="img-fluid">
+                    </div>
+                    </div>
+                </div>
+                </div> 
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-12">
+            <div class="card mt-4">
+                <div class="card-body">
+                <div class="row">
+                    <div class="col-6 border-right">
+                        <h6 class="card-title">Page View </h6>
+                        <h4>3669.25</h4>
+                        <p class="text-muted pt-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, optio, vel aperiam ullam, temporibus fugit harum quidem at impedit alias rerum ex? Rerum nemo, eos praesentium inventore unde quidem perspiciatis sit reprehenderit, laudantium voluptatum tempora possimus. Nobis officiis illum minima.</p>
+                    </div>
+                    <div class="col-6">
+                        <div id="chart">
+                            <img src="../assets/imgs/chart2.svg" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <a href="#">
+                        <p>View Details</p>
+                        </a>
+                    </div>
+                </div>
+                
+                
+                
+                </div>
+            </div>  
+            </div>
+            </div>
+        </div>
+    </section>
+    <!-- end wrapper section -->
+    <!--Start orders table -->
+    <section id="orders" class="py-5">
+    <div class="container">
+        <h3>orders status</h3>
+        <p class="text-muted">please chose the order lines to be canceld </p>
+        <div class="row">
+            <% if(orders.length>0){%>
+            <table class="table table-striped text-center">
+            <thead>
+                <tr>
+                <th>order Name</th>
+                <th>Order-date</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Price</th>
+                <th>Phone</th>
+                <th>status</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach((order ,index)=>{ %>
+                    <tr>
+                        <th scope="row"><%= order.Name %></th>
+                        <td scope="row"><%= order.OrderDate.toDateString()%></td>
+                        <td scope="row"><%= order.City %></td>
+                        <td scope="row"><%= order.Address %></td>
+                        <td scope="row"><%= order.OrderPrice %>$</td>
+                        <td scope="row"><%= order.Phone %></td>
+                        <td>
+                            <a class="badge badge-success " id="action">Done</a>
+                        </td>
+                        <td>
+                            <a class="btn badge badge-danger " id="Cancel">Cancel</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <%}else {%>
+            <p class="text-center">No orders found press<a href="/add">Here</a> to Add orders to the database  ^_-</p>
+        <%}%>
+        </div>
+        <div class="row mt-4">
+            <nav class="justify-content-end">
+                <ul class="pagination pagination-info mb-0">
+                <li class="page-item disabled"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item active"><a class="page-link">1</a></li>
+                <li class="page-item"><a class="page-link">2</a></li>
+                <li class="page-item"><a class="page-link">3</a></li>
+                <li class="page-item"><a class="page-link">4</a></li>
+                <li class="page-item"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    </section>
+    <!--End orders table -->
+    <!-- Start review section -->
+    <section id="reviws" class="py-5">
+        <div class="container">
+            <div class="row">
+            <div class="col-12">
+                <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Reviews</h2>
+                    <div class="row">
+                    <div class="col-6">
+                        <div class="content py-2 border-bottom d-flex flex-row">
+                        <img src="../assets/imgs/custmore1.jpeg" alt="perdon1" class="img-sm rounded-circle">
+                        <div class="description ml-4">
+                            <p class="mb-0 ">sarah Mohammed</p>
+                            <small class="text-muted">
+                                Awesome!!! Highly recommend
+                            </small>
+                        </div> 
+                        <div class="rating ml-auto align-items-center justify-content-center">
+                            <img src="../assets/imgs/rating.png" alt="ratingPic" class="img-fluid" style="width: 10rem;
+                            height: 25px">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="content py-2 border-bottom d-flex flex-row">
+                        <img src="../assets/imgs/custmore1.jpeg" alt="perdon1" class="img-sm rounded-circle">
+                        <div class="description ml-4">
+                            <p class="mb-0 ">sarah Mohammed</p>
+                            <small class="text-muted">
+                                Awesome!!! Highly recommend
+                            </small>
+                        </div> 
+                        <div class="rating ml-auto align-items-center justify-content-center">
+                            <img src="../assets/imgs/rating.png" alt="ratingPic" class="img-fluid" style="width: 10rem;
+                            height: 25px">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="content py-2 border-bottom d-flex flex-row">
+                        <img src="../assets/imgs/custmore2.jpeg" alt="perdon1" class="img-sm rounded-circle">
+                        <div class="description ml-4">
+                            <p class="mb-0 ">sarah Mohammed</p>
+                            <small class="text-muted">
+                                Awesome!!! Highly recommend
+                            </small>
+                        </div> 
+                        <div class="rating ml-auto align-items-center justify-content-center">
+                            <img src="../assets/imgs/rating.png" alt="ratingPic" class="img-fluid" style="width: 10rem;
+                            height: 25px">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="content py-2 border-bottom d-flex flex-row">
+                        <img src="../assets/imgs/custmore3.jpeg" alt="perdon1" class="img-sm rounded-circle">
+                        <div class="description ml-4">
+                            <p class="mb-0 ">sarah Mohammed</p>
+                            <small class="text-muted">
+                                Awesome!!! Highly recommend
+                            </small>
+                        </div> 
+                        <div class="rating ml-auto align-items-center justify-content-center">
+                            <img src="../assets/imgs/rating.png" alt="ratingPic" class="img-fluid" style="width: 10rem;
+                            height: 25px">
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+    </section>
+
+<!-- End review section -->
+
+<% include partials/footer.ejs%>
+
+<% include partials/scripts.ejs%>

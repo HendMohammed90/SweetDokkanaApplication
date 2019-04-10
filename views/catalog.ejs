@@ -1,0 +1,140 @@
+
+<% include partials/header.ejs%>
+<!-- Main style sheet -->
+<link rel="stylesheet" href="../../assets/css/catalog.css" />
+</head>
+<body>
+<% include partials/navigation.ejs%>
+<!-- start wrapper section -->
+<section id="catalog" class="my-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-sm-6 col-lg-3 mb-3">
+                <a href="/api/EditeProduct" class="wedgit">
+                    <div class="wedgit-header"><h4><strong>add new</strong> product</h4></div>
+                    <div class="wedgit-icon"><span class="h2"><i class="fa fa-plus"></i></span></div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-3">
+                <a href="#" class="wedgit">
+                    <div class="wedgit-header"><h4><strong>out of</strong> stock</h4></div>
+                    <div class="wedgit-icon"><span class="h2">20</span></div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-3">
+                <a href="#" class="wedgit">
+                    <div class="wedgit-header"><h4><strong>highly</strong> rated</h4></div>
+                    <div class="wedgit-icon"><span class="h2">50</span></div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-3">
+                <a href="#" class="wedgit">
+                    <div class="wedgit-header"><h4><strong>all</strong> products</h4></div>
+                    <div class="wedgit-icon"><span class="h2">8000</span></div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    </section>
+    <!-- end wrapper section -->
+
+    <!-- start table of content -->
+    <section id="all-content" class="my-5">
+        <div class="container">
+            <div class="row content-title">
+                <h2><label>select category </label></h2>
+                <div class="form-control-lg">
+                    <select class="selectpicker" name="selectCategory" onchange="location = this.value;">
+                        <option selected disabled>Category Types</option>
+                        <option value="/api/products/catalog">All</option>
+                        <option value="/api/products/Western">Western Sweets</option>
+                        <option value="/api/products/Oriental">Oriental</option>
+                        <option value="/api/products/Cakes">Cakes</option>
+                        <option value="/api/products/Bastry">Bastry</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row pb-3 content-componants d-flex justify-content-end">
+                <!-- <div class="col-sm-6 col-xs-5">
+                    <div class="form-control-lg">
+                        <select class="selectpicker" id='maxRows' name='state' >
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="100">All</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-sm-6 col-xs-7 fl-r">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% if(products.length>0){%>
+            <table id='mytable' class="table table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>image</th>
+                        <th>product name</th>
+                        <th class="hidden-xs">price</th>
+                        <th class="hidden-xs">status</th> 
+                        <th>action</th>
+                    </tr>
+                </thead>
+                <tbody id='table'>
+                    <% products.forEach((product ,index)=>{ %>
+                        <tr>
+                                <th scope="row"><%= product.Pro_IMG %></th>
+                                <td scope="row"><%= product.Pro_Name %></td>
+                                <td scope="row"><%= product.Pro_Price %></td>
+                                <%if(product.numberInStock>0){%>
+                                <td scope="row">True</td>
+                                <%}else {%>
+                                <td scope="row">False</td>
+                                <%}%>
+                                <td>
+                                    <a href="/api/EditeProduct/<%=product._id%>" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a href="/api/products/<%=product._id%>" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                    <i class="fa fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                <%}else {%>
+                    <p class="text-center">No orders found press<a href="/api/products" style="color :blueviolet"> Here</a> to Add orders to the database  ^_-</p>
+                <%}%>
+                </tbody>
+            </table>
+            <div class="row mt-4">
+                <nav class="justify-content-end">
+                    <ul class="pagination pagination-info mb-0">
+                    <%for (let i=1 ;i<=Math.ceil(total/5);i++){%>
+                        <%if (pageNo==i){%>
+                            <li class="page-item active"><a class="page-link" href="<%= '/api/products/' + i%>"><%=i%></a></li>
+                        <%}else{%>
+                            <li class="page-item "><a class="page-link" href="<%= '/api/products/' + i%>"><%=i%></a></li>
+                        <%}%>
+                    <%}%>
+                    
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+    </section>
+
+
+    <!-- End table of content -->
+    
+
+<% include partials/footer.ejs%>
+
+<% include partials/scripts.ejs%>
