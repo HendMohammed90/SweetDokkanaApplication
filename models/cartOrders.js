@@ -5,7 +5,7 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 Joi.objectId = require('joi-objectid')(Joi);
-const CartOrder = mongoose.model('CartOrder', new mongoose.Schema({  
+const cartOrderSchema = new mongoose.Schema({  
   customer: {
     type: new mongoose.Schema({
       UserName: {
@@ -42,10 +42,11 @@ const CartOrder = mongoose.model('CartOrder', new mongoose.Schema({
     }),
     require: true
   },
-    SelectedQuantity: {
-        type: Number,
-    }
-  }));
+  SelectedQuantity: {
+      type: Number,
+  }
+  })
+const CartOrder = mongoose.model('CartOrder', cartOrderSchema);
   //I need here to adjust the category to an array to add more then a product
   function validateCartOrder(cartOrder) {
     const schema = {
@@ -59,3 +60,4 @@ const CartOrder = mongoose.model('CartOrder', new mongoose.Schema({
   
   exports.CartOrder = CartOrder; 
   exports.validate = validateCartOrder;
+  exports.cartOrderSchema = cartOrderSchema;

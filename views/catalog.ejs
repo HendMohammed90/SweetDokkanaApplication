@@ -42,39 +42,19 @@
     <!-- start table of content -->
     <section id="all-content" class="my-5">
         <div class="container">
-            <div class="row content-title">
+                <div class="row content-title">
                 <h2><label>select category </label></h2>
-                <div class="form-control-lg">
-                    <select class="selectpicker" name="selectCategory" onchange="location = this.value;">
-                        <option selected disabled>Category Types</option>
-                        <option value="/api/products/catalog">All</option>
-                        <option value="/api/products/Western">Western Sweets</option>
-                        <option value="/api/products/Oriental">Oriental</option>
-                        <option value="/api/products/Cakes">Cakes</option>
-                        <option value="/api/products/Bastry">Bastry</option>
-                    </select>
                 </div>
-            </div>
-            <div class="row pb-3 content-componants d-flex justify-content-end">
-                <!-- <div class="col-sm-6 col-xs-5">
-                    <div class="form-control-lg">
-                        <select class="selectpicker" id='maxRows' name='state' >
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="100">All</option>
-                        </select>
-                    </div>
-                </div> -->
-                <div class="col-sm-6 col-xs-7 fl-r">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
+                <div class="row by-2 mb-3 text-center ">
+                <div class="col-12 ">
+                    <button class="btn btn-outline-primary btn-group btn-group-lg" role="group" id="tap-button"><a href="/api/products" style="color: #5d284f;"><span>All</span></a></button>  
+                    <button class="btn btn-outline-primary btn-group btn-group-lg" role="group" id="tap-button"><a href="/api/products/Western" style="color: #5d284f;"><span>Western Sweets</span></a></button>
+                    <button class="btn btn-outline-primary btn-group btn-group-lg" role="group" id="tap-button"><a href="/api/products/Oriental" style="color: #5d284f;"><span>oriental</span></a></button>
+                    <button class="btn btn-outline-primary btn-group btn-group-lg" role="group" id="tap-button"><a href="/api/products/Cakes" style="color: #5d284f;"><span>cakes</span></a></button>
+                    <button class="btn btn-outline-primary btn-group btn-group-lg" role="group"id="tap-button"><a href="/api/products/Bastry" style="color: #5d284f;"><span>Pastry</span></a></button>
                 </div>
-            </div>
+                </div>
+                 
             <% if(products.length>0){%>
             <table id='mytable' class="table table-striped text-center">
                 <thead>
@@ -89,9 +69,11 @@
                 <tbody id='table'>
                     <% products.forEach((product ,index)=>{ %>
                         <tr>
-                                <th scope="row"><%= product.Pro_IMG %></th>
+                                <th scope="row">
+                                    <img style="width:70px ;height:70px" src="../../assets/imgs/productIMGS/<%=product._id%>.<%=product.ProIMG.split('.')[1]%>" alt="<%=product.ProIMG%>"/>
+                                </th>
                                 <td scope="row"><%= product.Pro_Name %></td>
-                                <td scope="row"><%= product.Pro_Price %></td>
+                                <td scope="row">$<%= parseFloat(product.Pro_Price).toFixed(2) %></td>
                                 <%if(product.numberInStock>0){%>
                                 <td scope="row">True</td>
                                 <%}else {%>
@@ -100,7 +82,7 @@
                                 <td>
                                     <a href="/api/EditeProduct/<%=product._id%>" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <a href="/api/products/<%=product._id%>" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                    <a href="/api/products/delet/<%=product._id%>" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
                                     <i class="fa fa-times"></i>
                                     </a>
                                 </td>
@@ -109,7 +91,7 @@
                         </tbody>
                     </table>
                 <%}else {%>
-                    <p class="text-center">No orders found press<a href="/api/products" style="color :blueviolet"> Here</a> to Add orders to the database  ^_-</p>
+                    <p class="text-center">No Products found press<a href="/api/EditeProduct" style="color :blueviolet"> Here</a> to Add Products to the database  ^_-</p>
                 <%}%>
                 </tbody>
             </table>

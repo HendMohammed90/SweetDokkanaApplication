@@ -1,22 +1,23 @@
 /*jshint esversion: 6 */
 /* jshint ignore:start */
 
-const auth = require('../middleware/auth')
+// const auth = require('../middleware/auth')
 const admin = require('../middleware/admin');
 const {Category, validate} = require('../models/categories');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 require('express-async-errors');
+const {ensureAuthenticated} = require('../config/auth');
 
 
-router.get('/',[auth,admin], async (req, res)=>{     
+router.get('/',async (req, res)=>{     
     const categories = await Category.find();
     res.send(categories);
 });
 
 
-router.get('/:id',[auth,admin], async(req, res)=>{     
+router.get('/:id', async(req, res)=>{     
     const category = await Category.findById(req.params.id);
 
     if(!category) return res.status(404).send('Product with given ID is not found');
@@ -26,7 +27,7 @@ router.get('/:id',[auth,admin], async(req, res)=>{
 );
 
 
-router.post('/',[auth,admin] ,async(req, res)=>{     
+router.post('/' ,async(req, res)=>{     
     const {error} = validate(req.body);
     if (error) return res.status(404).send(error.details[0].message);
 
@@ -41,7 +42,7 @@ router.post('/',[auth,admin] ,async(req, res)=>{
 });
 
 
-router.put('/:id',[auth,admin] ,async(req, res)=>{     
+router.put('/:id',ensureAuthenticated,async(req, res)=>{     
     const {error} = validate(req.body);
     if (error) return res.status(404).send(error.details[0].message);
 
@@ -56,7 +57,7 @@ router.put('/:id',[auth,admin] ,async(req, res)=>{
     res.send(UpdatedCategory);
 });
 
-router.delete('/:id',[auth,admin]  ,async(req, res)=>{     
+router.delete('/:id',ensureAuthenticated ,async(req, res)=>{     
     const DeletedCategory = await Category.findByIdAndRemove(req.params.id);
 
     if(!DeletedCategory) return res.status(404).send('genre is not found');

@@ -48,26 +48,27 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="numberInStock">Product Quantaty</label>
+                                <input class="form-control" type="number" id="numberInStock" name="numberInStock" value="<%=product.numberInStock%>" >
+                            </div>
                         </div>
                         <div class="col-6">
-                            <div class="form-group">
-                                <label for="Pro_IMG">insert product IMG</label>
-                            <div class="custom-file">
-                                <input type="file" id="Pro_IMG" name="Pro_IMG" class="custom-file-input">
-                                <label class="custom-file-label" for="myfile">Choose Image</label>
-                            </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="ProIMG">insert product IMG</label>
+                                    <div class="custom-file">
+                                        <input type="file" id="image" class="custom-file-input" name="image" >
+                                        <label class="custom-file-label" for="image">Choose Image</label>
+                                    </div>
+                                </div>
                             <div class="pattern">
-                            <img src="../public/assets/imgs/productIMGS/<%=product.Pro_IMG%>" class="img-fluid" alt="product-image-pattern"/>
+                            <img src="../../assets/imgs/productIMGS/<%=product._id%>.<%=product.ProIMG.split('.')[1]%>" class="img-fluid" alt="product-image-pattern"/>
                             </div>
                         </div>
                     </div>      
-                    <div class="row">
-                        <div class="col-lg-6">
+                    <div class="row pt-3">
+                        <div class="col-lg-12">
                             <button class="btn btn-outline-info btn-block" type="submit" value="submit">save</button>
-                        </div>
-                        <div class="col-lg-6">
-                            <a class="btn btn-outline-warning btn-block ">reset <i class="fas fa-redo"></i></a>
                         </div>
                     </div>
                 </form>

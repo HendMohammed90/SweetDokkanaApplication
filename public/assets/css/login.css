@@ -67,6 +67,20 @@ body {
     background: rgba(0, 0, 0, 0.6);
     color: #ffffff;
 }
+.content .form #login{
+  background-color: #ffc244;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    color: black;
+}
+.content .form #signUp{
+background-color: #ffc244;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  width: 50%;
+  color: black;
+  margin-left: 50%;
+}
 
 
 

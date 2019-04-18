@@ -1,39 +1,18 @@
 /*jshint esversion: 6 */
 /* jshint ignore:start */
 
-const auth = require('../middleware/auth');
+// const auth = require('../middleware/auth');
 const {Product, validate} = require('../models/products');
+const {ensureAuthenticated} = require('../config/auth');
 const{Category} = require('../models/categories');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 require('express-async-errors');
-const multer = require('multer');
-const storage =multer.diskStorage({
-    destination : function(req ,file , cb){
-        cb(null, 'public/assets/imgs/productIMGS/');
-    },
-    filename: function(req ,file,cb){
-        cb(null, new Date().toISOString() + file.originalname)
-    }
-})
-const fileFilter =(req ,file , cb)=>{
-    if(file.mimetype=='image/jpeg'|| file.mimetype=='image/jpg')
-    {
-        cb(null,true)
-    }else{
-        cb(null,false)
-    }
-};
-const upload = multer({
-    storage: storage,
-    fileFilter :fileFilter
-
-});
+const fs = require('fs-extra');
 
 
-
-router.get('/:pageNo?',async(req, res)=>{   
+router.get('/:pageNo?',ensureAuthenticated,async(req, res)=>{   
    
     let pageNo = 1;
     if(req.params.pageNo){
@@ -43,8 +22,8 @@ router.get('/:pageNo?',async(req, res)=>{
         pageNo = 1
     }  
     let q= {
-        skip :5 * (pageNo -1),
-        limit : 5
+        skip :3 * (pageNo -1),
+        limit : 3
     }
     const products = await Product.find({},{},q);
     //find total NU of Documants
@@ -61,33 +40,35 @@ router.get('/:pageNo?',async(req, res)=>{
             title : "Main Page",
             products :products,
             total :parseInt(totalDocs),
-            pageNo :pageNo
+            pageNo :pageNo,
+            name : req.user.name
         });
     })
-    // const products = await Product.find({});
-    // res.send(products);
+   
   
     // console.log(products);
 });
 
 
-router.get('/Cakes', async(req, res)=>{ 
+router.get('/Cakes', ensureAuthenticated,async(req, res)=>{ 
  
     const products = await Product.find( { 'Category.CategoryName' : 'cakes' });
 
     if(!products) return res.status(404).send('products on given Category is not found');
     
-    // res.send(product);
+  
+    res.send(product);
     res.render("catalog.ejs" , 
         {
             data :"Welcom To our render Page",
             title : "Main Page",
-            products :products
+            products :products,
+            name : req.user.name
         });
     console.log(products);
 });
 
-router.get('/Bastry', async(req, res)=>{ 
+router.get('/Bastry', ensureAuthenticated,async(req, res)=>{ 
  
     const products = await Product.find( { 'Category.CategoryName' : 'Pastry' });
 
@@ -98,13 +79,14 @@ router.get('/Bastry', async(req, res)=>{
         {
             data :"Welcom To our render Page",
             title : "Main Page",
-            products :products
+            products :products,
+            name : req.user.name
         });
     console.log(products);
 });
 
 
-router.get('/Oriental', async(req, res)=>{ 
+router.get('/Oriental', ensureAuthenticated,async(req, res)=>{ 
  
     const products = await Product.find( { 'Category.CategoryName' : 'oriental' });
 
@@ -115,13 +97,14 @@ router.get('/Oriental', async(req, res)=>{
         {
             data :"Welcom To our render Page",
             title : "Main Page",
-            products :products
+            products :products,
+            name : req.user.name
         });
     console.log(products);
 });
 
 
-router.get('/Western',async(req, res)=>{ 
+router.get('/Western',ensureAuthenticated,async(req, res)=>{ 
  
     const products = await Product.find( { 'Category.CategoryName' : 'Western Sweets' });
 
@@ -132,13 +115,14 @@ router.get('/Western',async(req, res)=>{
         {
             data :"Welcom To our render Page",
             title : "Main Page",
-            products :products
+            products :products,
+            name : req.user.name
         });
     console.log(products);
 });
 
 
-router.get('/:id', async(req, res)=>{     
+router.get('/:id', ensureAuthenticated,async(req, res)=>{     
     const product = await Product.findById(req.params.id);
 
     if(!product) return res.status(404).send('Product with given ID is not found');
@@ -147,14 +131,15 @@ router.get('/:id', async(req, res)=>{
     res.render("EditeProduct.ejs" , 
     {
         message :"Welcom To our Edite Product Page" ,
-        product :product
+        product :product,
+        name : req.user.name
     });
 });
 
 
 
 
-router.post('/',auth ,async(req, res)=>{     
+router.post('/' ,ensureAuthenticated,async(req, res)=>{     
     const {error} = validate(req.body);
     if (error) return res.status(404).send(error.details[0].message);
 
@@ -182,13 +167,14 @@ router.post('/',auth ,async(req, res)=>{
         {
             data :"Welcom To our render Page",
             title : "Main Page",
-            newProduct :newProduct
+            newProduct :newProduct,
+            name : req.user.name
         });
     console.log(newProduct);
 });
 
 
-router.put('/:id',auth , async(req, res)=>{     
+router.put('/:id' , ensureAuthenticated,async(req, res)=>{     
     //validate the Product
     const {error} = validate(req.body);
     if (error) return res.status(404).send(error.details[0].message);
@@ -210,19 +196,15 @@ router.put('/:id',auth , async(req, res)=>{
     res.send(UpdatedProduct);
 });
 
-// "Category" :{
-//     "id" :"5ca0cb162815061e7d400f77" ,
-//     "CategoryName" :"Pastry"
-// } , I Can't Ubdate the category of product -_-
-
-
-router.delete('/:id' , async(req, res)=>{     
+// router.delete('/delete/:id' , ensureAuthenticated,async(req, res)=>{     
+router.get('/delet/:id' , ensureAuthenticated,async(req, res)=>{     
     //find the Product
     const DeletedProduct = await Product.findByIdAndRemove(req.params.id);
 
     if(!DeletedProduct) return res.status(404).send('Product is not found');
+    
 
-    res.redirect('/api/products');
+    res.redirect('/api/products/:pageNo?');
 } ) 
 
 module.exports = router; 

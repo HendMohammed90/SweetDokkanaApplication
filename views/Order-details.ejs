@@ -1,4 +1,10 @@
-    <!-- start for nav  -->
+
+<% include partials/header.ejs%>
+<!-- Main style sheet -->
+<link rel="stylesheet" href="../../../../assets/css/viewproduct.css" />
+</head>
+<body>
+       <!-- start for nav  -->
     <nav class="navbar navbar-expand-lg navbar-light mb-3">
             <div class="container">
             <a class="navbar-brand" href="/api/home">sweet dokkana</a>
@@ -43,7 +49,7 @@
             <i class="fas fa-bars control-icon"></i>
             <div class="admin">
             <div class="admin-img">
-                <img alt="admin-img" src="../../assets/imgs/adminImg.jpeg" class="img-fluid" />
+                <img alt="admin-img" src="../../../assets/imgs/adminImg.jpeg" class="img-fluid" />
             </div>
             <div class="admin-name">
                 <p class="name" style="color: #67cdd9"><%= name %></p>
@@ -137,3 +143,74 @@
             <img src="../../../assets/imgs/dashboard_header.jpeg" alt="header image" class="animation-zoom" >
         </header>
         <!--end header section  -->
+    <!-- start table of content -->
+    <!--Start orders table -->
+    <section id="order-details" class="my-5">
+            <div class="container">
+                    <div class="row text-center pt-5">
+                        <div class="col-12">
+                            <h2>order details</h2>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-12">
+                            <h5><i class="fa fa-shopping-cart"> products:</i></h5>
+                            <h4  class="d-inline-block">status:</h4> <span class="badge badge-warning">processing</span>
+                            <br>
+                        </div>
+                    </div>
+                <div class="row">
+                    <%=order%>
+                    <div class="row">
+                        <div class="col-12 p-5">
+                                <table class="table table-striped text-center" >
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>product name</th>
+                                            <th class="hidden-xs">Description</th>
+                                            <th class="hidden-xs">Price</th>
+                                            <th >Image</th>
+                                        </tr>
+                                        <tbody>
+                                            <p>The table></p>
+                                        </tbody>
+                                    </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row info">
+                        <div class="col-6 p-5">
+                            <h3>customer info:</h3>
+                          <P>The data of user</P>
+                        </div>
+                        <div class="col-6">
+                            <img src="../../../assets/imgs/personal-info.svg" alt="personal-info" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!--End orders table -->
+
+    <!-- End table of content -->
+
+<% include partials/footer.ejs %>
+<script
+src="http://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"
+></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+crossorigin="anonymous"
+></script>
+<script
+src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+crossorigin="anonymous"
+></script>
+<script src="../../../../assets/js/plugin.js"></script>
+</body>
+</html>

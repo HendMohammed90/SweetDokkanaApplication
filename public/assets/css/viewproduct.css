@@ -75,13 +75,13 @@ body {
   color: white;
 }
 .navbar .navbar-brand::before {
-  content: url(../img/logo1.png);
+  content: url(../imgs/logo1.png);
   position: absolute;
   top: 4px;
   left: -63px;
 }
 .navbar .navbar-brand::after {
-  content: url(../img/logo2.png);
+  content: url(../imgs/logo2.png);
   position: absolute;
   top: 4px;
   right: -62px;

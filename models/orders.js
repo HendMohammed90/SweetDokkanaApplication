@@ -3,8 +3,10 @@
 
 const Joi = require('joi');
 const mongoose = require('mongoose');
+const {cartOrderSchema} = require('./cartOrders'); 
+const {ProductSchema} = require('./products');
 
-const Order = mongoose.model('Order', new mongoose.Schema({
+const orderSchema =  new mongoose.Schema({
   Name: {
     type: String,
     required: true,
@@ -41,8 +43,71 @@ const Order = mongoose.model('Order', new mongoose.Schema({
   },
   ShippingPrice:{
     type:Number
+  },
+  customer: {
+    type: new mongoose.Schema({
+      UserName: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 50
+      },
+      Email: {
+        type: String,
+        unique : true,
+        required: true,
+        minlength: 5,
+        maxlength: 255
+      },Phone: {
+        type: Number,
+        required: true,
+        min :10 
+      },
+      Address: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 50
+      }
+    }),  
+    required: true
+  },
+  // product:
+  //    {
+  //   type: new mongoose.Schema({
+  //   Pro_Name: {
+  //     type: String,
+  //     required: true,
+  //     minlength: 5,
+  //     maxlength: 50
+  //   },
+  //   Pro_Price: {
+  //     type: Number,
+  //     required: true
+  //     },
+  //   Pro_IMG: {
+  //       type: String,
+  //       minlength: 5,
+  //       maxlength: 50
+  //     },
+  //   Pro_Qty: {
+  //     type: Number,
+  //     min: 1
+  //     }
+  //   }),
+  //   require: true
+  // }
+  product:{
+    type : [ProductSchema],
+    required :true
   }
-  }));
+  // cartOrder :{
+  //   type :cartOrderSchema,
+  //   required :true
+  // }
+ 
+  });
+const Order = mongoose.model('Order',orderSchema);
   
   function validateOrder(order) {
     const schema = {
@@ -51,7 +116,11 @@ const Order = mongoose.model('Order', new mongoose.Schema({
       City: Joi.string().required(),
       Phone: Joi.number().required(),
       Payment: Joi.string().required(),
-      OrderPrice: Joi.number().required()
+      OrderPrice: Joi.number().required(),
+      customerID:Joi.objectId(),
+      productID:Joi.objectId(),
+      // cartOrderID:Joi.objectId()
+      
     };
   
     return Joi.validate(order, schema);

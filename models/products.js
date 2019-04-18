@@ -23,21 +23,14 @@ const ProductSchema=  new mongoose.Schema({
     type: Number,
     required: true
   },
-  Pro_IMG: {
-    type: String,
-    minlength: 5
-    
-  },
+  ProIMG:String,
   numberInStock: { 
     type: Number, 
     min: 0,
     max: 255
   },
   Status:{
-    type:Boolean,
-    required :function(){
-      return (this.numberInStock > 0);
-    }
+    type:Boolean
   },
   DateOfAdding:{
     type:Date ,
@@ -57,7 +50,7 @@ const Product = mongoose.model('Product',ProductSchema);
       numberInStock: Joi.number(),
       Pro_Description: Joi.string(),
       Pro_Price: Joi.number(),
-      Pro_IMG: Joi.string(),
+      ProIMG:  Joi.only(),
       Status :Joi.boolean()
     };
   
@@ -66,3 +59,4 @@ const Product = mongoose.model('Product',ProductSchema);
   
   exports.Product = Product; 
   exports.validate = validateProduct;
+  exports.ProductSchema= ProductSchema;

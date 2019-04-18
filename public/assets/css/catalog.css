@@ -259,6 +259,21 @@ background-color: #4f111969;
 #catalog a .wedgit-icon>span:hover{
   color: #F46036
 }
+#tap-button{
+  width: 19.7%;
+  position: relative;
+  height: 2.5em;
+}
+#tap-button span{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+#tap-button:hover a span{
+  color: white
+}
+
 
 /* end wrapper section catalog row  */
 

@@ -75,13 +75,13 @@
     color: white;
   }
   .navbar .navbar-brand::before {
-    content: url(../img/logo1.png);
+    content: url(../imgs/logo1.png);
     position: absolute;
     top: 4px;
     left: -63px;
   }
   .navbar .navbar-brand::after {
-    content: url(../img/logo2.png);
+    content: url(../imgs/logo2.png);
     position: absolute;
     top: 4px;
     right: -62px;
@@ -240,6 +240,9 @@
   /* end the header */
   
   /* start admin-info section  */
+  #admin-info{
+    margin: 7rem auto;
+  }
   #admin-info .container{
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
