@@ -141,6 +141,7 @@ router.post('/:id',ensureAuthenticated, async(req, res)=>{
     //      }                                                          
     //     console.log('File has been Deleted');                           
     //  });  
+    
     let files = req.files.image;
     console.log(files);
     // update the Product

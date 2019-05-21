@@ -1,0 +1,116 @@
+
+<!-- start nav -->
+<nav class="navbar my-nav navbar-expand-xl  shadow ">
+    <!-- <div class="container"> -->
+        <a class="navbar-brand" href="/">sweet dokkana</a>
+        <button
+        class="navbar-toggler collapsed"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-expanded="false"
+        >
+        <span class="navbar-toggler-icon">
+            <i class="fas fa-bars" style="padding-top: 0.2em;"></i>
+        </span>
+        </button>
+        <div class="navbar-collapse collapse " id="navbarNav">
+        <ul class="navbar-nav mr-auto ">
+            <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/product">product</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="/search">search <i class="fas fa-search"></i></a></li>
+            
+        </ul>
+        <div class="nav-info-items d-lg-flex ">
+            <div id="cart-info" class="nav-info align-items-center cart-info d-flex justify-content-between mx-lg-5 ">
+                <span class="cart-info__icon mr-lg-3"><i class="fas fa-shopping-cart"></i></span>
+                <a href="/api/cartOrders" style="color :white">(
+                <% if (typeof cartOrders!== "undefined") {%>
+                    <%=cartOrders.length %>
+                <%} else {%>
+                    0
+                <%}%>    
+                )</a>
+            </div>
+            <div>
+                <ul class="navbar-nav ml-auto ">
+                <% if (typeof user !== "undefined" ){%>
+                    <i class="fa fa-user"></i> <%=user%>> </a></li>
+                <%} else{%>
+                    <li class="nav-item ml-auto"><a class="nav-link popupbutton" data-show=".popup">
+                    <i class="fa fa-user"></i> log in </a></li>
+                <%}%>
+                </ul>
+            </div>
+            
+        </div>
+        <div id="cart" class="cart">
+            <!-- cart item -->
+            <% if (typeof cartOrders !== "undefined" ){%>
+            <% var total = 0; %>
+            <% cartOrders.forEach((product)=>{ %>
+            <% var sub = parseFloat(product.qyt * product.price).toFixed(2)%>
+            <% total += +sub %>
+             <div class="cart-item d-flex justify-content-between text-capitalize my-3">
+                <img class="rounded" style="width:50px ; height:50px" src="/assets/imgs/<%=product.image%>" alt ="<%=product.product%>"/>
+                <div class="item-text">
+                <p id="cart-item-title" class="font-weight-bold mb-0"><%=product.product%></p>
+                <span>$</span>
+                <span id="cart-item-price" class="cart-item-price" class="mb-0"><%=product.price%></span>
+                </div>
+            </div>
+            <%})%>
+            <!-- end of cart item -->
+        
+            <!-- cart total -->
+            <div class="cart-total-container d-flex justify-content-around text-capitalize mt-5">
+                <h5>total : <%=parseFloat(total).toFixed(2)%></h5>
+            </div>
+            <!--end cart total -->
+            <%}%>
+        
+            <!-- cart buttons -->
+            <div class="cart-buttons-container mt-3 d-flex justify-content-between">
+                <a href="/api/cartOrders/clear" id="clear-cart" class="btn btn-outline-primary mybutton">clear cart</a>
+                <a href="/api/cartOrders" class="btn btn-outline-primary mybutton">checkout</a>
+                </div>
+            <!--end of cart buttons -->
+        </div>
+    </div>
+    <!-- </div> -->
+</nav>
+<!-- End  nav -->
+
+<!-- start login form -->
+<div class="popup">
+    <div class="inner">
+        <% include messages.ejs %> 
+        <i class="fa fa-window-close" aria-hidden="true"></i>
+        <form action="/api/customers" method="POST">
+            <h2 class="text-center">login form</h2>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="Password" class="form-control" id="Password" name="Password" placeholder="Password">
+            </div>
+            <button class="btn btn-primary btn-block  mybutton" type="submit"><span>Submit</span></button>
+        
+        </form>
+        <span class="mr-auto"><a href="/forgot_password">forgot your password</a></span>
+        <a class="btn btn-primary mybutton" href="/account" ><span>sign up</span></a>  
+        
+    </div>
+</div>
+<!-- End login form -->
+
+  <!-- scroll To up button  -->
+  <a href="#" id="scroll-to-top" >
+    <i class="fas fa-chevron-up"></i>
+  </a>
+<!-- scroll To up button  -->
+  

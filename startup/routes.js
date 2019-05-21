@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 const express = require('express');
+const Homepage = require('../routes/Homepage');
 const products = require('../routes/products');
 const customers = require('../routes/customers');
 const cartOrders = require('../routes/cartOrders');
@@ -54,6 +55,12 @@ app.use(function(req, res, next) {
     next();
   });
 
+//cart session
+app.get('*' , function(req ,res,next){
+  res.locals.cartOrders = req.session.cartOrders;
+  next();
+});
+
 app.use('/api/products', products);
 app.use('/api/EditeProduct', EditeProduct);
 app.use('/api/orders', orders);
@@ -62,15 +69,17 @@ app.use('/api/customers', customers);
 app.use('/api/categories', categories);
 app.use('/api/users', users);
 app.use('/api/home', home);
-// app.use('/', auth);
+app.use('/', Homepage);
 app.use(error); 
 
 
 app.set("views" , "./views");
 app.set("view engine" , "ejs");
 
-app.get('/' ,(req,res)=>{
-    res.redirect('/api/users');
-});
+
+
+// app.get('/' ,(req,res)=>{
+//     res.redirect('/api/users');
+// });
 
 };

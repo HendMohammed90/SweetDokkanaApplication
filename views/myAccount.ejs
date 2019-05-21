@@ -1,0 +1,182 @@
+<% include partials/HomeHeader.ejs%>
+<!-- Main style sheet -->
+<link rel="stylesheet" href="../../assets/css/myAccount.css" />
+</head>
+<body>
+<% include partials/Homenavigation.ejs%>
+
+ <!-- Start for header -->
+ <header>
+    <div class="overlay d-md-block text-center">
+        <div id="wavePart"></div>
+        <div class="container">
+        <h1 class="display-2">
+            <i class="fas fa-user-circle"></i> account information
+        </h1>
+
+        <button data-scroll="#informtion" class="btn  btn-lg mybutton"><i class="fas fa-angle-double-down"></i></button>
+        </div>
+    </div>
+</header>
+<!-- End for header -->
+<br />
+<br />
+<br />
+  
+<!-- start informtion form -->
+<section id="informtion" >
+    <div class="container topPart">
+        <h3 class="text-center ">personal information</h3>
+        <div class="row">
+        <div class="col-md-6">
+            <form>
+            <label for="name">name :</label>
+            <p class="d-inline">Lorem ipsum dolor sit amet.</p>
+            <br />
+            <br />
+            <label for="name">email :</label>
+            <p class="d-inline">jdoe@gmail.com.</p>
+            <br />
+            <br />
+            <label for="name">telephone :</label>
+            <p class="d-inline">+99 854 785 478</p>
+            <br />
+            <br />
+            <label for="name">address :</label>
+
+            <p class="d-inline">17 Street name here , city name .</p>
+            <br />
+            <br />
+            <label for="name">password :</label>
+            <p class="d-inline">*********</p>
+            <br />
+            <br />
+            <a class="btn mybutton">edit</a>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="imgcontaier">
+            <img
+                src="../assets/imgs/informationPic.svg"
+                class="img-fluid"
+                alt="informationPic"
+            />
+            </div>
+        </div>
+        </div>
+        <!-- the order part -->
+        <div class="row pt-5">
+        <div class="col-12">
+            <h3 class="text-center ">your orders</h3>
+            <p>change cancel or return: this is the place to start:</p>
+            <table class="table table-striped text-center">
+            <thead>
+                <tr>
+                <th>order id</th>
+                <th>Order-date</th>
+                <th>Address</th>
+                <th>Shipping price</th>
+                <th>Total-Price</th>
+                <th>status</th>
+                <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                <td>11/22/2356</td>
+                <td>17 St Name Here Office</td>
+                <td>123 <i class="fas fa-dollar-sign"></i></td>
+                <td>123 <i class="fas fa-dollar-sign"></i></td>
+                <td> arrive </td>
+                <td>
+                    <a
+                    href="Returns.html"
+                    class="btn btn-outline-danger "
+                    id="action"
+                    >return</a
+                    >
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                <td>11/22/2356</td>
+                <td>17 St Name Here Office</td>
+                <td>123 <i class="fas fa-dollar-sign"></i></td>
+                <td>123 <i class="fas fa-dollar-sign"></i></td>
+                <td> in the way </td>
+                <td>
+                    <a
+                    href="Returns.html"
+                    class="btn btn-outline-danger "
+                    id="action"
+                    >return</a
+                    >
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                <td>11/22/2356</td>
+                <td>17 St Name Here Office</td>
+                <td>123 <i class="fas fa-dollar-sign"></i></td>
+                <td>123 <i class="fas fa-dollar-sign"></i></td>
+                <td> arrive </td>
+                <td>
+                    <a
+                    href="Returns.html"
+                    class="btn btn-outline-danger "
+                    id="action"
+                    >return</a
+                    >
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">4</th>
+                <td>11/22/2356</td>
+                <td>17 St Name Here Office</td>
+                <td>123 <i class="fas fa-dollar-sign"></i></td>
+                <td>123 <i class="fas fa-dollar-sign"></i></td>
+                <td> in the way </td>
+                <td>
+                    <a
+                    href="Returns.html"
+                    class="btn btn-outline-danger "
+                    id="action"
+                    >return</a
+                    >
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">5</th>
+                <td>11/22/2356</td>
+                <td>17 St Name Here Office</td>
+                <td>123 <i class="fas fa-dollar-sign"></i></td>
+                <td>123 <i class="fas fa-dollar-sign"></i></td>
+                <td> arrive </td>
+                <td>
+                    <a
+                    href="Returns.html"
+                    class="btn btn-outline-danger "
+                    id="action"
+                    >return</a
+                    >
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</section>
+<!-- End register form -->
+
+<br />
+<br />
+<br />
+<br />
+<br />
+  
+
+<% include partials/Homefooter.ejs%>
+
+<% include partials/Homescripts.ejs%>

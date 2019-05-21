@@ -1,7 +1,6 @@
 /*jshint esversion: 6 */
 /* jshint ignore:start */
 
-// const auth = require('../middleware/auth');
 const {Product, validate} = require('../models/products');
 const {ensureAuthenticated} = require('../config/auth');
 const{Category} = require('../models/categories');
@@ -22,8 +21,8 @@ router.get('/:pageNo?',ensureAuthenticated,async(req, res)=>{
         pageNo = 1
     }  
     let q= {
-        skip :3 * (pageNo -1),
-        limit : 3
+        skip :6 * (pageNo -1),
+        limit : 6
     }
     const products = await Product.find({},{},q);
     //find total NU of Documants
@@ -49,7 +48,6 @@ router.get('/:pageNo?',ensureAuthenticated,async(req, res)=>{
     // console.log(products);
 });
 
-
 router.get('/Cakes', ensureAuthenticated,async(req, res)=>{ 
  
     const products = await Product.find( { 'Category.CategoryName' : 'cakes' });
@@ -57,7 +55,7 @@ router.get('/Cakes', ensureAuthenticated,async(req, res)=>{
     if(!products) return res.status(404).send('products on given Category is not found');
     
   
-    res.send(product);
+    // res.send(products);
     res.render("catalog.ejs" , 
         {
             data :"Welcom To our render Page",
@@ -202,9 +200,8 @@ router.get('/delet/:id' , ensureAuthenticated,async(req, res)=>{
     const DeletedProduct = await Product.findByIdAndRemove(req.params.id);
 
     if(!DeletedProduct) return res.status(404).send('Product is not found');
-    
-
-    res.redirect('/api/products/:pageNo?');
+    req.flash('success_msg' , 'Product has been deleted -_-')
+    res.redirect('/api/products');
 } ) 
 
 module.exports = router; 

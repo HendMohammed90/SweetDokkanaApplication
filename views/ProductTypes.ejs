@@ -1,0 +1,95 @@
+<% include partials/HomeHeader.ejs%>
+<!-- Main style sheet -->
+<link rel="stylesheet" href="../../assets/css/products.css" />
+</head>
+<body>
+<% include partials/Homenavigation.ejs%>
+
+    <!-- Start for header -->
+    <header>
+        <div class="overlay d-md-block text-center">
+            <div id="wavePart"></div>
+            <div class="container">
+            <h1 class="display-2">our products</h1>
+            <h4>
+                “Let's face it, a nice creamy chocolate cake does a lot for a lot of
+                people; it does for me.” —Audrey Hepburn. “
+            </h4>
+            <button data-scroll="#menu" class="btn  btn-lg mybutton "><span>explore</span></button>
+            </div>
+        </div>
+    </header>
+    <!-- End for header -->
+    <br />
+    <br />
+    <br />
+    <!-- start offer section -->
+    <section id="offer" class="topPart">
+        <div class="container">
+            
+        </div>
+    </section>
+    <!-- end offer section -->
+    
+    <!-- Start section of menu -->
+    <section id="menu" class="py-5" data-aos="fade-down-right">
+        <div class="container">
+            <div class="col-md-12">
+            <h3 class="text-center">Our menu</h3>
+            
+            <p class="text-center text-muted">
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+            </p>
+            <!-- here the more details abou offer of the week -->
+            <div class="menu-container">
+                <img src="../../assets/imgs/menu.jpg" class="img-fluid" alt="menuImg"/>
+            </div>
+            </div>
+            <br>
+            
+            <div class="row" id="gallery">
+                    <%products.forEach((Product)=>{%>
+                <div class="col-lg-4 col-sm-6 col-10 my-3 store-item cacks" style="display: block;">
+                    <div class="card" style="
+                    height: 18em">
+                        <div class="img-container">
+                            <img src="../../assets/imgs/productIMGS/<%=Product._id%>.<%=Product.ProIMG.split('.')[1]%>" alt="<%=Product.ProIMG%>" class="card-img-top store-img">
+                            <span class="store-item-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex justify-content-between text-capitalize">
+                                <h5 id="store-item-name"><a href="/productDescription/<%= Product._id %>"><%= Product.Pro_Name %></a></h5>
+                                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold" style="color: #58274e;
+                                    font-size: 18px;"><%= parseFloat(Product.Pro_Price).toFixed(2) %></strong>
+                                </h5>
+                                <img src="../../assets/imgs/rating.png" style="width:100px ;height:30px" alt="rtingImg"/>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+                </div>
+                <%})%>
+            </div>
+        
+            <div class="row ">
+            <div class="col-3 text-center">
+                <button class="btn btn-lg mybutton"style="color: white" ><a href="/api/cartOrders">go to your shopping cart <i class="fas fa-shopping-cart"></i></a></button>
+            </div>
+            </div>
+        </div>
+    </section>
+    <!-- End section of menu -->
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+      
+    
+<% include partials/Homefooter.ejs%>
+
+<% include partials/Homescripts.ejs%>

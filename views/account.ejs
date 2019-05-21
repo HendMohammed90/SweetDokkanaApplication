@@ -1,0 +1,106 @@
+<% include partials/HomeHeader.ejs%>
+<!-- Main style sheet -->
+<link rel="stylesheet" href="../../assets/css/account.css" />
+</head>
+<body>
+<% include partials/Homenavigation.ejs%>
+<!-- Start for header -->
+<header>
+    <div class="overlay d-md-block text-center">
+        <div id="wavePart"></div>
+        <div class="container">
+        <h1 class="display-2">be our happy customer</h1>
+
+        <button  data-scroll="#regist-form" class="btn  btn-lg mybutton">join</button>
+        </div>  
+    </div>
+</header>
+<!-- End for header -->
+<br />
+<br />
+<br />
+<!-- start register form -->
+<section id="regist-form" class="topPart">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-4 d-none d-md-block">
+            <aside>
+            <h3 >account</h3>
+            <ul>
+                <li>
+                <a class="popupbutton" data-show=".popup">
+                    <i class="fa fa-chevron-right"></i>
+                <i class="fa fa-user"></i> log in
+                </a>
+                <!-- content: "\f054"; this will be before -->
+                </li>
+                <li>
+                <a href="/account"><i class="fa fa-chevron-right"></i> <i class="fas fa-user-plus"></i> register </a>
+                </li>
+                <li>
+                <a href="/forgot_password"> <i class="fa fa-chevron-right"></i><i class="fas fa-key"></i> forgotten password </a>
+                </li>
+                <li>
+                <a href="/myAccount"> <i class="fa fa-chevron-right"></i><i class="fas fa-user-circle"></i> my account </a>
+                </li>
+
+                <li>
+                <a href="/myAccount"><i class="fa fa-chevron-right"></i><i class="fas fa-history"></i>order history </a>
+                </li>
+                <li>
+                <a href="#"> <i class="fa fa-chevron-right"></i><i class="fas fa-undo"></i> returns </a>
+                </li>
+            </ul>
+            </aside>
+        </div>
+        <div class="col-md-8">
+            <div class="acount-content">
+            <form action="/api/customers/singup" method="POST">  
+                <% include partials/messages.ejs %> 
+                <h3 class="text-center ">register account</h3>
+                <p class="text-center">If you already have an account with us, please login at the <a href="Home.html">login page</a>.</p>
+                <div class="form-group ">
+                <label for="UserName">name</label>
+                <input id="UserName" class="form-control" placeholder="UserName" type="text" required="" name="UserName">
+                </div>
+                <div class="form-group ">
+                <label for="Email">email</label>
+                <input id="Email" required="" class="form-control" placeholder="Email" type="email" name="Email">
+                </div>
+                <div class="form-group ">
+                <label for="Phone">telephone</label>
+                <input id="Phone" required="" class="form-control" placeholder="telephone" type="tel" name="Phone">
+                </div>
+                <div class="form-group ">
+                <label for="Address">address</label>
+                <input id="Address" required="" class="form-control" placeholder="address" type="text" name="Address">
+                </div>
+                <div class="form-group ">
+                <label for="Password">password</label>
+                <input id="Password" required="" class="form-control" placeholder="password" type="password" name="Password">
+                </div>
+                <div class="form-group">
+                <input  class="btn btn-primary btn-block mybutton" value="Register" type="submit">
+                </div>
+                <%if (data){%>
+                    <span id="Error-Message" style="color:#ffc107"><%=data%></span>
+                  <%}%>
+            <form> 
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+    
+<!-- End register form -->
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+<% include partials/Homefooter.ejs%>
+
+<% include partials/Homescripts.ejs%>

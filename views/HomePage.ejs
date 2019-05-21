@@ -1,0 +1,509 @@
+<% include partials/HomeHeader.ejs%>
+<!-- Main style sheet -->
+<link rel="stylesheet" href="../../assets/css/Homestyle.css" />
+</head>
+<body>
+<% include partials/Homenavigation.ejs%>
+
+ <!-- Start for header --> 
+    <header>
+     <!-- Start the slider -->
+    <div
+      id="slider"
+      class="carousel slide carousel-fade  "
+      data-ride="carousel">
+      <div class="carousel-inner">
+          <div id="wavePart"></div>
+        <div class="carousel-item active">
+          <img
+            class="d-block img-fluid"
+            src="../assets/imgs/slider1.jpeg"
+            alt="First Slide"
+          />
+          <div class="carousel-caption d-md-block">
+            <h1>Welcom To <span>Sweet Dokkana</span></h3>
+            <h3>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            </h3>
+            <button data-scroll="#offer" class="btn  btn-lg mybutton">
+              <span>explore</span>
+            </button>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img
+            class="d-block img-fluid"
+            src="../assets/imgs/slider2.jpeg"
+            alt="Second Slide"
+          />
+          <div class="carousel-caption d-md-block">
+            <h1>the tast of our amazing <span>sweets</span></h1>
+            <h3>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus,
+              illo?
+            </h3>
+            <button data-scroll="#offer" class="btn btn-lg mybutton" ><span>explore</span></button>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img
+            class="d-block img-fluid"
+            src="../assets/imgs/slider3.jpg"
+            alt="Third Slide"
+          />
+          <div class="carousel-caption d-md-block">
+            <h1> we make cacks for your <span> events</span></h1>
+            <h3>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus,
+              illo?
+            </h3>
+            <button data-scroll="#offer" class="btn  btn-lg  mybutton" ><span>explore</span></button>
+          </div>
+        </div>
+        <div class="carousel-item">
+            <img
+              class="d-block img-fluid"
+              src="../assets/imgs/slider4.jpeg"
+              alt="Third Slide"
+            />
+            <div class="carousel-caption d-md-block">
+              <h1> we love sweet <span>chocklate</span></h1>
+              <h3>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus,
+                illo?
+              </h3>
+              <button  data-scroll="#offer" class="btn  btn-lg mybutton" ><span>explore</span></button>
+            </div>
+          </div>
+      </div>
+
+      <!-- CONTROLS -->
+      <a href="#slider" class="carousel-control-prev" data-slide="prev">
+        <span class="carousel-control-prev-icon" ></span>
+      </a>
+
+      <a href="#slider" class="carousel-control-next" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+     <!-- End the slider -->
+     <div class="pic-of-header">
+       <h4>Welcom To Sweet Dokkana</h4>
+       <img src="../assets/imgs/header.jpeg" class="img-fluid" alt="imgOfHeader">
+     </div>
+    </header> 
+  <!-- End for header -->
+  <!--start section of the offer  -->
+  <section id="offer" class="mb-3 topPart
+  ">
+    <div id="imgBackground"><img src="../assets/imgs/patternbackground.jpg" /></div>
+
+    <div class="container">
+      <div class="row py-5">
+        <div class="col-sm-12 col-md-6" data-aos="fade-right">
+          <img src="../assets/imgs/offerCack.png" alt="offer-cack" id="off-cack" class="img-fluid" />
+        
+        </div>
+        <div class="col-sm-12 col-md-6" data-aos="fade-down-left">
+          <div class="card">
+            <div class="card-body" >
+              <h4 class="card-title">
+                top rated products
+              </h4>
+              <h6 class="card-subtitle ">click to read more</h6>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Repellat adipisci sapiente doloremque deleniti magni fuga
+                nihil eum veritatis, excepturi similique. Porro nulla fuga
+                error optio. Veniam quia similique, modi nisi repellat error
+                quisapiente
+                reprehenderit nihil voluptas.
+              </p>
+              <a class="btn btn-outline-primary mybutton" href="products.html"><span>Read</span> More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+  <!--End section of the offer  -->
+
+
+  <!-- Start section of services -->
+  <section id="service" class="py-5">
+    <div class="container">
+      <h3 class="text-center">Our servicess</h3>
+      <div class="row" id="my-row" style="padding:0" data-aos="flip-up">
+        <div class="col-xs-12 col-sm-6 col-md-6" >
+            <div class="card text-center" >
+                <div class="card-body">
+                  <h4 class="card-title">if you can't mack sweet easy you can buy it </h4>
+                  <h6 class="card-subtitle ">Lorem ipsum dolor sit </h6>
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Repellat adipisci sapiente doloremque deleniti magni fuga
+                    nihil eum veritatis, excepturi similique. Porro nulla fuga
+                    error optio. 
+                  </p>
+                </div>
+              </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6" style=" padding-left:0; padding-right: 0"  >
+            <img src="../assets/imgs/servis.jpg" id ="service-img"alt="servise-cack" class="img-fluid" />
+          </div>
+      </div>
+      <div class="row mb-5" id="servisRow"> 
+        <div class="col-lg-3 col-xs-12 col-sm-6 mb-lg-0 mb-4">
+          <div class="card " data-aos="zoom-in">
+            <div>
+              <!-- Card image -->
+              <img src="../assets/imgs/weddingCack.jpg" class="card-img-top" alt="wedding Cack photo">
+            </div>
+            <!-- Card content -->
+            <div class="card-body text-center">
+              <!-- Category & Title -->
+              <h4 class="card-title">wedding cacks</h4>
+        
+              <!-- Description -->
+              <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim excepturi magnam nostrum sit aliquam itaque numquam ex adipisci hic. Nesciunt.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-12 col-sm-6 mb-lg-0 mb-4">
+          <div class="card" data-aos="zoom-in">
+            <div>
+              <!-- Card image -->
+              <img src="../assets/imgs/birthdayCack.jpeg" class="card-img-top" alt="wedding Cack photo">
+            </div>
+            <!-- Card content -->
+            <div class="card-body text-center">
+              <!-- Category & Title -->
+              <h4 class="card-title">Birthday Cack</h4>
+        
+              <!-- Description -->
+              <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim excepturi magnam nostrum sit aliquam itaque numquam ex adipisci hic. Nesciunt.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-12 col-sm-6 mb-lg-0 mb-4">
+          <div class="card" data-aos="zoom-in">
+            <div>
+              <!-- Card image -->
+              <img src="../assets/imgs/purechocolate.jpeg" class="card-img-top" alt="wedding Cack photo">
+            </div>
+            <!-- Card content -->
+            <div class="card-body text-center">
+              <!-- Category & Title -->
+              <h4 class="card-title">Pure Chocolate</h4>
+        
+              <!-- Description -->
+              <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim excepturi magnam nostrum sit aliquam itaque numquam ex adipisci hic. Nesciunt.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-12 col-sm-6 mb-lg-0 mb-4 ">
+          <div class="card" data-aos="zoom-in">
+            <div>
+              <!-- Card image -->
+              <img src="../assets/imgs/kids.jpeg" class="card-img-top" alt="wedding Cack photo">
+            </div>
+            <!-- Card content -->
+            <div class="card-body text-center">
+              <!-- Category & Title -->
+              <h4 class="card-title">Best For Kids</h4>
+        
+              <!-- Description -->
+              <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim excepturi magnam nostrum sit aliquam itaque numquam ex adipisci hic. Nesciunt.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End section of services -->
+
+  <!-- start gallery section -->
+  <section id="gallery" class="py-5">
+      <div class="container">
+        <h3 class="text-center">product Gallery</h3>
+        <!-- filter buttons  -->
+        <div class="row">
+          <div class="col-lg-8 mx-auto d-flex justify-content-around my-2 sortBtn flex-wrap">
+              <a href="#" class="btn btn-outline-primary mybutton text-uppercase filter-btn m-2" data-filter="all">all</a>
+              <%categories.forEach((category)=>{%>
+                <a href="" class="btn btn-outline-primary mybutton text-uppercase filter-btn m-2" data-filter="<%=category.CategoryName%>"><%=category.CategoryName%></a>
+              <%})%>
+          </div>
+        </div>
+        <!--  search box  -->
+        <div class="row py-3">
+					<div class="col-md-6 col-10 mx-auto">
+						<form>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span id="search-icon" class="input-group-text search-box">
+										<i class="fas fa-search"></i>
+									</span>
+								</div>
+								<input type="text" id="search-item" class="form-control" placeholder="item...">
+							</div>
+						</form>	
+				  </div>
+        </div>
+        <!-- store items-->
+<!--         
+        <div id="Stor-items" class="row pt-3">
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item oriental" data-item="oriental" style="display: block;">
+              <div class="card">
+                <div class="img-container">
+                  <img src="../assets/imgs/imgGallery1.jpeg" class="card-img-top store-img">
+                  <span class="store-item-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <div class="card-text d-flex justify-content-between text-capitalize">
+                    <h5 id="store-item-name">sweet item</h5>
+                    <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">5</strong>
+                    </h5>
+                    
+                  </div>
+                </div>
+              </div>
+  
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item western-sweets" data-item="western-sweets" style="display: block;">
+            <div class="card">
+              <div class="img-container">
+                <img src="../assets/imgs/imgGallery2.jpeg" class="card-img-top store-img">
+                <span class="store-item-icon">
+                  <i class="fas fa-shopping-cart"></i>
+                </span>
+              </div>
+              <div class="card-body">
+                <div class="card-text d-flex justify-content-between text-capitalize">
+                  <h5 id="store-item-name">sweet item</h5>
+                  <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">10</strong>
+                  </h5>
+                  
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item cacks" data-item="cacks" style="display: block;">
+          <div class="card">
+            <div class="img-container">
+              <img src="../assets/imgs/imgGallery3.jpeg" class="card-img-top store-img">
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text d-flex justify-content-between text-capitalize">
+                <h5 id="store-item-name">sweet item</h5>
+                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">15</strong>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item Bastry" data-item="Bastry" style="display: block;">
+          <div class="card">
+            <div class="img-container">
+              <img src="../assets/imgs/imgGallery4.jpeg" class="card-img-top store-img">
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text d-flex justify-content-between text-capitalize">
+                <h5 id="store-item-name">sweet item</h5>
+                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">20</strong>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item oriental" data-item="oriental" style="display: block;">
+          <div class="card">
+            <div class="img-container">
+              <img src="../assets/imgs/imgGallery5.jpeg" class="card-img-top store-img">
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text d-flex justify-content-between text-capitalize">
+                <h5 id="store-item-name">sweet item</h5>
+                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">25</strong>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item western-sweets" data-item="western-sweets" style="display: block;">
+          <div class="card">
+            <div class="img-container">
+              <img src="../assets/imgs/imgGallery6.jpeg" class="card-img-top store-img">
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text d-flex justify-content-between text-capitalize">
+                <h5 id="store-item-name">sweet item</h5>
+                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">30</strong>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item cacks" data-item="cacks" style="display: block;">
+          <div class="card">
+            <div class="img-container">
+              <img src="../assets/imgs/imgGallery7.jpeg" class="card-img-top store-img">
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text d-flex justify-content-between text-capitalize">
+                <h5 id="store-item-name">sweet item</h5>
+                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">35</strong>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item Bastry" data-item="Bastry" style="display: block;">
+          <div class="card">
+            <div class="img-container">
+              <img src="../assets/imgs/imgGallery8.jpeg" class="card-img-top store-img">
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text d-flex justify-content-between text-capitalize">
+                <h5 id="store-item-name">sweet item</h5>
+                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">10</strong>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item oriental" data-item="oriental" style="display: block;">
+          <div class="card">
+            <div class="img-container">
+              <img src="../assets/imgs/imgGallery9.jpeg" class="card-img-top store-img">
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text d-flex justify-content-between text-capitalize">
+                <h5 id="store-item-name">sweet item</h5>
+                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">15</strong>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item western-sweets" data-item="western-sweets" style="display: block;">
+          <div class="card">
+            <div class="img-container">
+              <img src="../assets/imgs/imgGallery10.jpeg" class="card-img-top store-img">
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text d-flex justify-content-between text-capitalize">
+                <h5 id="store-item-name">sweet item</h5>
+                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">20</strong>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item cacks" data-item="cacks" style="display: block;">
+          <div class="card">
+            <div class="img-container">
+              <img src="../assets/imgs/imgGallery11.jpeg" class="card-img-top store-img">
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text d-flex justify-content-between text-capitalize">
+                <h5 id="store-item-name">sweet item</h5>
+                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">30</strong>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-10 mx-auto my-3 store-item Bastry" data-item="Bastry" style="display: block;">
+          <div class="card">
+            <div class="img-container">
+              <img src="../assets/imgs/imgGallery12.jpeg" class="card-img-top store-img">
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text d-flex justify-content-between text-capitalize">
+                <h5 id="store-item-name">sweet item</h5>
+                <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold">11</strong>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+        </div> -->
+        
+        <div class="row" id="gallery">
+           
+            <%for(var i=0 ; i< 9; i++) {%>
+        <div class="col-lg-4 col-sm-6 col-10 my-3 store-item cacks <%=products[i].Category.CategoryName%>" style="display: block;" data-item="<%=products[i].Category.CategoryName%>">
+            <div class="card" style="
+            height: 18em">
+                <div class="img-container">
+                    <img src="../../assets/imgs/productIMGS/<%=products[i]._id%>.<%=products[i].ProIMG.split('.')[1]%>" alt="<%=products[i].ProIMG%>" class="card-img-top store-img">
+                    <span class="store-item-icon">
+                        <a href="/api/cartOrders/add/<%=products[i]._id%>"><i class="fas fa-shopping-cart"></i></a>
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="card-text d-flex justify-content-between text-capitalize">
+                        <h5 id="store-item-name"><a href="/productDescription/<%= products[i]._id %>"><%= products[i].Pro_Name %></a></h5>
+                        <h5 class="store-item-value">$ <strong d="store-item-price" class="font-weight-bold" style="color: #58274e;
+                            font-size: 18px;"><%= parseFloat(products[i].Pro_Price).toFixed(2) %></strong>
+                        </h5>
+                        <img src="../assets/imgs/rating.png" style="width:100px ;height:30px" alt="rtingImg"/>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}%>
+    </div>
+      </div>
+    </section>
+  <!-- End gallery section -->
+
+  
+<% include partials/Homefooter.ejs%>
+
+<% include partials/Homescripts.ejs%>

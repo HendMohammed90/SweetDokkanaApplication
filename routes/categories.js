@@ -1,8 +1,6 @@
 /*jshint esversion: 6 */
 /* jshint ignore:start */
 
-// const auth = require('../middleware/auth')
-const admin = require('../middleware/admin');
 const {Category, validate} = require('../models/categories');
 const mongoose = require('mongoose');
 const express = require('express');

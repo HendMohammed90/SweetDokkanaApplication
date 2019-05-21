@@ -99,7 +99,7 @@ router.post('/', async(req, res)=>{
     // if (!cartOrder) return res.status(400).send('Invalid cartOrder to be added to the order');
 
 
-    //create the new Product
+    //create the new Order
     let newOrder = new Order({ 
         Name: req.body.Name,
         Address: req.body.Address,

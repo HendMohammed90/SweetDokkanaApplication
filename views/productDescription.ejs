@@ -1,0 +1,142 @@
+<% include partials/HomeHeader.ejs%>
+<!-- Main style sheet -->
+<link rel="stylesheet" href="../../assets/css/productDescription.css" />
+</head>
+<body>
+<% include partials/Homenavigation.ejs%>
+<!-- Start for header -->
+<header>
+    <div class="overlay d-md-block text-center">
+        <div id="wavePart"></div>
+        <div class="container">
+        <h1 class="display-2">details</h1>
+
+        <button data-scroll="#Description" class="btn mybutton btn-lg "><i class="fas fa-angle-double-down"></i></button>
+        </div>
+    </div>
+</header>
+<!-- End for header -->
+<br />
+<br />
+<br />
+
+<!-- start Description -->
+<section id="Description">
+    <div class="container topPart">
+        <div class="row">
+        <div class="col-md-12">
+            <div class="pro-description">
+            <h3 class="text-center ">product details</h3>
+            <div class="row">
+                <div class="col-md-3">
+                <div class="img-container">
+                    <img
+                    src="../../assets/imgs/productIMGS/<%=product._id%>.<%=product.ProIMG.split('.')[1]%>"
+                    alt="productImg"
+                    class="img-fluid pro-img"
+                    />
+                </div>
+                </div>
+                <div class="col-md-9">
+                <div class="details">
+                    <div class="product-name"><%=product.Pro_Name%></div>
+                    <div class="product-info">
+                    <p><strong>category :</strong><%=product.Category.CategoryName%>.</p>
+                    <p><strong>Product-id :</strong><%=product._id%></p>
+                    <p><strong>Product-price :</strong>$<%=product.Pro_Price%></p>
+                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                    </div>
+                    <div class="review">
+                    <div>
+                        <img
+                        src="../assets/imgs/rating.png"
+                        alt=" reviews"
+                        class="img-fluid"
+                        width="20%"
+                        />
+                        <br />
+                        <a>0 reviews</a>&nbsp;&nbsp;
+                        <a><i class="fa fa-pencil"></i>Write a review</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                <h4>description</h4>
+                <p>
+                    <%=product.Pro_Description%>
+                </p>
+                <button class="btn  btn-lg mybutton"><i class="fas fa-plus"></i> review</button>
+                <form style="display:none">
+                    <p><label>review id</label> : 12d45f6.</p>
+                    <div class="form-group ">
+                    <label for="name">name :</label>
+                    <input
+                        id="name"
+                        class="form-control"
+                        placeholder="Name"
+                        type="text"
+                        required=""
+                    />
+                    </div>
+                    <div class="form-group ">
+                    <label for="opinion"
+                        >write your opinion about the product :</label
+                    >
+                    <textarea
+                        name=""
+                        id="message"
+                        cols="30"
+                        rows="5"
+                        class="form-control"
+                        placeholder="Your Opinion "
+                        required=""
+                    ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                    <label class="d-block">rating:</label>
+                    <span>Bad</span>&nbsp;
+                    <input type="radio" name="rating" value="1">
+                    &nbsp;
+                    <input type="radio" name="rating" value="2">
+                    &nbsp;
+                    <input type="radio" name="rating" value="3">
+                    &nbsp;
+                    <input type="radio" name="rating" value="4">
+                    &nbsp;
+                    <input type="radio" name="rating" value="5">
+                    &nbsp;
+                    <span>Good</span><br>
+                    </div>
+                    <button  class="btn  btn-lg mybutton">submit</button>
+                </form>
+                <div class="continue">
+                    <a href="/product">continue
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Description -->
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+<% include partials/Homefooter.ejs%>
+
+<% include partials/Homescripts.ejs%>

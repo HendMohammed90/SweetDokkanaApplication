@@ -6,6 +6,11 @@ const express = require('express');
 const router = express.Router();
 require('express-async-errors');
 const {ensureAuthenticated} = require('../config/auth');
+const passport = require('passport');
+const _ =  require('lodash'); 
+const bcrypt = require('bcryptjs');
+require('../config/passport-setup')(passport);
+
 
 
 router.get('/:pageNo?',ensureAuthenticated,async (req, res) => {
@@ -43,26 +48,93 @@ router.get('/:pageNo?',ensureAuthenticated,async (req, res) => {
  
 });
 
-router.post('/', async (req, res) => { 
+// router.post('/', async (req, res) => { 
+//   const { error } = validate(req.body); 
+//   if (error) return res.status(400).send(error.details[0].message);
+//   try{
+//     customer = new Customer({ 
+//       UserName: req.body.UserName,
+//       Email: req.body.Email,
+//       Password: req.body.Password,
+//       Phone: req.body.Phone,
+//       Address: req.body.Address,
+//     });
+//       customer = await customer.save();
+//   }
+//   catch(ex){
+//     console.log(ex);
+//     return res.status(404).send('This email is already regested pleas sign in');
+//   }
+  
+//   res.send(customer);
+// });
+
+
+// login post request 
+//this part will be for login systym for custonmer
+// <%if (typeof name !== "undefined"){%>
+//   <ul class="navbar-nav ml-auto ">
+//       <li class="nav-item ml-auto"><a class="nav-link">
+//       <%=name%></a></li>
+//   </ul>
+// <%}else if(typeof name == "undefined"){%>
+//   <ul class="navbar-nav ml-auto ">
+//       <li class="nav-item ml-auto"><a class="nav-link popupbutton" data-show=".popup">
+//       <i class="fa fa-user"></i> log in </a></li>
+//   </ul>
+// <%}%>
+
+router.post('/', (req, res, next) => {
+  passport.authenticate('sweetDokkana-signup', {
+    successRedirect: '/',
+    failureRedirect: '/singup',
+    badRequestMessage: 'Somthing Bad has happend.',
+    failureFlash: true
+  })(req, res, next);
+});
+
+// sign up for customer post request
+router.post('/singup',async(req,res)=>{
+
+  // console.log(req.body);
+
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
-  try{
-    customer = new Customer({ 
-      UserName: req.body.UserName,
-      Email: req.body.Email,
-      Password: req.body.Password,
-      Phone: req.body.Phone,
-      Address: req.body.Address,
-    });
-      customer = await customer.save();
-  }
-  catch(ex){
-    console.log(ex);
-    return res.status(404).send('This email is already regested pleas sign in');
-  }
   
-  res.send(customer);
-});
+  let customer = await Customer.findOne({Email : req.body.Email});
+  
+  if(customer){
+    return res.status(400).render('account.ejs',
+    {
+      data : "  Invalid Email It's alredy registered Pleas Sign in"
+    });
+  } 
+
+  // //create the new User
+  customer =  new Customer({
+    UserName: req.body.UserName,
+    Email: req.body.Email,
+    Password: req.body.Password,
+    Phone: req.body.Phone,
+    Address: req.body.Address
+  });
+
+  // console.log(customer);
+
+  //hash Password
+  const salt = await bcrypt.genSalt(10);
+  customer.Password = await bcrypt.hash(customer.Password, salt);
+  
+  console.log(customer);
+
+  //save the user
+  await customer.save();
+  req.flash('success_msg', 'you are now registersd and can log in ');
+  res.redirect('/account');
+  
+})
+
+
 
 router.put('/:id', ensureAuthenticated,async (req, res) => { 
   const { error } = validate(req.body); 

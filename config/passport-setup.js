@@ -3,13 +3,14 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const {User} = require('../models/user');
+const {Customer} = require('../models/customer'); 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 
 //saving user object in the session
 module.exports =function(passport){
-    passport.use(
+    passport.use('AdminPanal-signup',
         new LocalStrategy({ usernameField: 'Email',passwordField: 'Password' }, (Email, Password, done) => {
           // Match user
           User.findOne({
@@ -23,7 +24,7 @@ module.exports =function(passport){
                 bcrypt.compare(Password, user.Password, (err, isMatch) => {
                 if (err) throw err;
                 if (isMatch) {
-                    // console.log(user);
+                    console.log(user);
                     return done(null, user);
                 } else {
                     return done(null, false, { message: 'Password incorrect' });
@@ -32,6 +33,27 @@ module.exports =function(passport){
           }).catch(err => console.log(err));
         })
     );
+
+    passport.use('sweetDokkana-signup',
+    new LocalStrategy({ usernameField: 'Email',passwordField: 'Password' }, (Email, Password, done) => {
+      // Match user
+      Customer.findOne({
+        Email: Email
+      }).then(user => {
+            if (!user) {
+            return done(null, false, { message: 'That Email is not registered' });
+            }
+    
+            // Match Password
+            if(Password === user.Password){
+                console.log(user);
+                return done(null, user);
+            }else{
+                return done(null, false, { message: 'Password incorrect' });
+            }
+      }).catch(err => console.log(err));
+    })
+);
 
     passport.serializeUser(function(user, done) {
     done(null, user.id);

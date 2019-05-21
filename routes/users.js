@@ -27,7 +27,7 @@ router.get('/' ,async (req, res) =>{
 
 // login post request 
 router.post('/', (req, res, next) => {
-  passport.authenticate('local', {
+  passport.authenticate('AdminPanal-signup', {
     successRedirect: '/api/home',
     failureRedirect: '/api/users',
     badRequestMessage: 'Somthing Bad has happend.',

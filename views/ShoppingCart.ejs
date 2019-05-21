@@ -1,0 +1,127 @@
+<% include partials/HomeHeader.ejs%>
+<!-- Main style sheet -->
+<link rel="stylesheet" href="../../assets/css/ShoppingCart.css" />
+</head>
+<body>
+<% include partials/Homenavigation.ejs%>
+<!-- Start for header -->
+<header>
+    <div class="overlay d-md-block text-center">
+        <div id="wavePart"></div>
+        <div class="container">
+        <h1 class="display-2">your cart</h1>
+        <button data-scroll="#ShoppingCart" class="btn  btn-lg mybutton"><i class="fas fa-angle-double-down"></i></button>
+        </div>
+    </div>
+</header>
+<!-- End for header -->
+<br />
+<br />
+<br />
+  
+<!-- start ShoppingCart -->
+<section id="ShoppingCart">
+    <div class="container topPart">
+            <% include partials/messages.ejs %> 
+        <div class="row">
+        <div class="col-md-3 d-none d-md-block">
+            <aside>
+            <h3 >account</h3>
+            <ul>
+                <li>
+                <a class="popupbutton" data-show=".popup">
+                    <i class="fa fa-chevron-right"></i>
+                <i class="fa fa-user"></i> log in
+                </a>
+                <!-- content: "\f054"; this will be before -->
+                </li>
+                <li>
+                <a href="/account"><i class="fa fa-chevron-right"></i> <i class="fas fa-user-plus"></i> register </a>
+                </li>
+                <li>
+                <a href="/forgot_password"> <i class="fa fa-chevron-right"></i><i class="fas fa-key"></i> forgotten password </a>
+                </li>
+                <li>
+                <a href="/myAccount"> <i class="fa fa-chevron-right"></i><i class="fas fa-user-circle"></i> my account </a>
+                </li>
+
+                <li>
+                <a href="/myAccount"><i class="fa fa-chevron-right"></i><i class="fas fa-history"></i>order history </a>
+                </li>
+                <li>
+                <a href="#"> <i class="fa fa-chevron-right"></i><i class="fas fa-undo"></i> returns </a>
+                </li>
+            </ul>
+            </aside>
+        </div>
+        <div class="col-md-9">
+            <div class="acount-content">
+            <form>  
+                <h3 class="text-center ">Shopping Cart <i class="fas fa-shopping-cart"></i></h3>
+                
+                <% if (typeof cartOrders !== "undefined" ){%>
+                          
+                <table class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                        <th>product image</th>
+                        <th>product name</th>
+                        <th>quantity</th>
+                        <th>unit-Price</th>
+                        <th>total for product </th>
+                        <th>action</th>
+                        </tr>
+                    </thead>
+                    <% var total = 0; %>
+                    <% cartOrders.forEach((product)=>{ %>
+                    <% var sub = parseFloat(product.qyt * product.price).toFixed(2)%>
+                    <% total += +sub %>
+                    <tbody>
+                        <tr>
+                            <td><img class="rounded" style="width:50px ; height:50px" src="/assets/imgs/<%=product.image%>" alt ="<%=product.product%>"/></td>
+                            <td><%=product.product%></td>
+                            <td><%=product.qyt%></td>
+                            <td><i class="fas fa-dollar-sign"></i><%=product.price%></td>
+                            <td><%=sub%></td>
+                            <td>
+                                <a class="action-button" href="/api/cartOrders/ubdate/<%=product.product%>?action=add">+</a>&nbsp;
+                                <a class="action-button" href="/api/cartOrders/ubdate/<%=product.product%>?action=remove">-</a>&nbsp;
+                                <a class="action-button" href="/api/cartOrders/ubdate/<%=product.product%>?action=clear">clear</a>&nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                    <%})%>
+                        <tr>
+                            <td colspan="6" style="text-align:right"><b>total :<i class="fas fa-dollar-sign"></i> <%=parseFloat(total).toFixed(2)%> </b></td>
+                        </tr>
+                    </table>
+                   
+                <form> 
+
+                    <div class="row">
+                        <div class="col-6"><a href="/api/cartOrders/clear" class="btn btn-outline-danger btn-block">clear</a></div>
+                        <div class="col-6"><a href="#" class="btn btn-outline-secondary btn-block">chekout</a></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+                <%} else {%>
+                    <h3 class="text-center pt-5">((Your cart is empty))</h3>
+
+                <%}%>
+        </div>
+</section>
+
+<!-- End ShoppingCart -->
+
+<br />
+<br />
+<br />
+<br />
+<br />
+  
+
+
+<% include partials/Homefooter.ejs%>
+
+<% include partials/Homescripts.ejs%>

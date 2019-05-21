@@ -1,0 +1,149 @@
+<% include partials/HomeHeader.ejs%>
+<!-- Main style sheet -->
+<link rel="stylesheet" href="../../assets/css/contact.css" />
+</head>
+<body>
+<% include partials/Homenavigation.ejs%>
+<!-- Start for header -->
+   <header>
+        <div class="overlay d-md-block text-center">
+            <div id="wavePart"></div>
+            <div class="container">
+            <h1 class="display-2">contact with us</h1>
+            <h4>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet magni
+                ad animi eos, provident dolore.
+            </h4>
+            <button data-scroll="#info" class="btn  btn-lg mybutton"><span><i class="fas fa-angle-double-down"></i></span></button>
+            </div>
+        </div>
+    </header>
+<!-- End for header --> 
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<!-- start contact info -->
+<section id="info" class="py-5 topPart" >
+  <div class="container">
+    <h3 class="text-center">Information</h3>
+    <div class="row" data-aos="flip-left">
+      <div class="col-md-6">
+        <div class="info-sec">
+          <i class="fas fa-home"></i>
+          <h4><strong>sweet dokkana</strong> inc located in:</h4>
+          <p>
+            5555 Love Paradise 56 New Clity 5655, Excel Tower United Kingdom
+          </p>
+        </div>
+        <div class="info-sec">
+          <i class="fas fa-phone-square"></i>
+          <h4><strong>phone number</strong>:</h4>
+          <p>(123) 465-6789</p>
+        </div>
+        <div class="info-sec">
+          <i class="fas fa-envelope-open"></i>
+          <h4><strong>email</strong>:</h4>
+          <p>info@GDG.co</p>
+        </div>
+        <div class="info-sec">
+          <i class="fas fa-link"></i>
+          <h4><strong>website</strong>:</h4>
+          <p>Global div gate.co</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="img-container"><div class="overlay"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End about section -->
+
+<!-- Start the form section -->
+<section id="contact-form" class="py-5">
+  <div class="container">
+    <div class="row" data-aos="flip-right">
+      <div class="col-md-6">
+        <div class="contact-img img-container">
+          <div class="overlay"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-center">contact Form</h3>
+        <p>leave us your opinion :</p>
+        <div class="form-group ">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            class="form-control"
+            placeholder="Name"
+            type="text"
+            required
+          />
+        </div>
+        <div class="form-group ">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            required
+            class="form-control"
+            placeholder="Email"
+            type="email"
+          />
+        </div>
+        <div class="form-group ">
+          <label for="message">Message</label>
+          <textarea
+            name=""
+            id="message"
+            cols="30"
+            rows="5"
+            class="form-control"
+            placeholder="Message"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <!-- <input
+            class="btn btn-primary btn-block mybutton"
+            value="Send Message"
+            type="submit"
+          /> -->
+          <button type="submit" class='btn btn-primary btn-block mybutton'><span>Send Message</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End the form section -->
+<br />
+<br />
+<br />
+<!-- map section -->
+<section id="map">
+  <div class="container-fluid m-0 p-0">
+    <!-- Google map -->
+    <div class="map-container-4 ">
+      <iframe
+        src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        frameborder=""
+        style="border:0"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- map section -->
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<% include partials/Homefooter.ejs%>
+
+<% include partials/Homescripts.ejs%>
+

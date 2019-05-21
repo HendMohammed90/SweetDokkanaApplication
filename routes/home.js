@@ -8,7 +8,8 @@ const {User} = require('../models/user');
 
 router.get('/',ensureAuthenticated,async(req, res) =>{
     const orders = await Order.find();
-    // console.log(req);
+  console.log(req.user); //==>this give me the user 
+  
     res.render("index.ejs" , 
         {
             orders :orders,
