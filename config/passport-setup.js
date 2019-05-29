@@ -34,27 +34,6 @@ module.exports =function(passport){
         })
     );
 
-    passport.use('sweetDokkana-signup',
-    new LocalStrategy({ usernameField: 'Email',passwordField: 'Password' }, (Email, Password, done) => {
-      // Match user
-      Customer.findOne({
-        Email: Email
-      }).then(user => {
-            if (!user) {
-            return done(null, false, { message: 'That Email is not registered' });
-            }
-    
-            // Match Password
-            if(Password === user.Password){
-                console.log(user);
-                return done(null, user);
-            }else{
-                return done(null, false, { message: 'Password incorrect' });
-            }
-      }).catch(err => console.log(err));
-    })
-);
-
     passport.serializeUser(function(user, done) {
     done(null, user.id);
     });

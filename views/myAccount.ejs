@@ -29,30 +29,57 @@
         <h3 class="text-center ">personal information</h3>
         <div class="row">
         <div class="col-md-6">
+            <% if (typeof user == "undefined" ){%>
             <form>
-            <label for="name">name :</label>
-            <p class="d-inline">Lorem ipsum dolor sit amet.</p>
-            <br />
-            <br />
-            <label for="name">email :</label>
-            <p class="d-inline">jdoe@gmail.com.</p>
-            <br />
-            <br />
-            <label for="name">telephone :</label>
-            <p class="d-inline">+99 854 785 478</p>
-            <br />
-            <br />
-            <label for="name">address :</label>
+                <label for="name">name :</label>
+                <p class="d-inline">Lorem ipsum dolor sit amet.</p>
+                <br />
+                <br />
+                <label for="name">email :</label>
+                <p class="d-inline">jdoe@gmail.com.</p>
+                <br />
+                <br />
+                <label for="name">telephone :</label>
+                <p class="d-inline">+99 854 785 478</p>
+                <br />
+                <br />
+                <label for="name">address :</label>
 
-            <p class="d-inline">17 Street name here , city name .</p>
-            <br />
-            <br />
-            <label for="name">password :</label>
-            <p class="d-inline">*********</p>
-            <br />
-            <br />
-            <a class="btn mybutton">edit</a>
+                <p class="d-inline">17 Street name here , city name .</p>
+                <br />
+                <br />
+                <label for="name">password :</label>
+                <p class="d-inline">*********</p>
+                <br />
+                <br />
+                <a class="btn mybutton">edit</a>
             </form>
+            <%} else{%>
+                <form>
+                    <label for="name">name :</label>
+                    <p class="d-inline"><%=user.UserName%>.</p>
+                    <br />
+                    <br />
+                    <label for="name">email :</label>
+                    <p class="d-inline"><%=user.Email%>.</p>
+                    <br />
+                    <br />
+                    <label for="name">telephone :</label>
+                    <p class="d-inline"><%=user.Phone%></p>
+                    <br />
+                    <br />
+                    <label for="name">address :</label>
+
+                    <p class="d-inline"><%=user.Address%></p>
+                    <br />
+                    <br />
+                    <label for="name">password :</label>
+                    <p class="d-inline"><%=user.Password%></p>
+                    <br />
+                    <br />
+                    <a class="btn mybutton">edit</a>
+                </form>
+                <%}%>
         </div>
         <div class="col-md-6">
             <div class="imgcontaier">

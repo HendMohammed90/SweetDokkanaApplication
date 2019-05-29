@@ -7,6 +7,63 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 require('express-async-errors');
+// const passport = require('passport');
+// require('../config/passport-setup')(passport);
+
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const {Customer} = require('../models/customer'); 
+const session = require('express-session')
+router.use(passport.initialize());
+router.use(passport.session());
+
+passport.use('sweetDokkana-signup',
+    new LocalStrategy({ usernameField: 'Email',passwordField: 'Password' }, (Email, Password, done) => {
+      // Match user
+      Customer.findOne({
+        Email: Email
+      }).then(user => {
+            if (!user) {
+            return done(null, false, { message: 'That Email is not registered' });
+            }
+    
+            // Match Password
+            if(Password === user.Password){
+                console.log(user);
+                return done(null, user);
+            }else{
+                return done(null, false, { message: 'Password incorrect' });
+            }
+      }).catch(err => console.log(err));
+    })
+);
+
+passport.serializeUser(function(user, done) {
+done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+Customer.findById(id, function(err, user) {
+    done(err, user);
+});
+});
+
+
+router.use((req, res, next) => {
+    res.locals.user = req.user
+    next()
+});
+
+
+router.post('/', (req, res, next) => {
+    passport.authenticate('sweetDokkana-signup', {
+      successRedirect: '/',
+      failureRedirect: '/',
+      badRequestMessage: 'Somthing Bad has happend.',
+      failureFlash: true
+    })(req, res, next);
+    
+  });
 
 
 router.get('/',async(req, res) =>{
@@ -15,8 +72,7 @@ router.get('/',async(req, res) =>{
 
     const products = await Product.find();
     // console.log(products);
-
-  console.log(req); //==>this give me undefined 
+    //console.log(req.user);
   if(typeof req.user == "undefined"){
     res.render("HomePage.ejs" , 
     {
@@ -28,14 +84,21 @@ router.get('/',async(req, res) =>{
     {
       products :products,
       categories :categories,
-      user : req.session.user
+      user : req.user
     });
   }
     
 });
 
 router.get('/about',async(req, res) =>{
-    res.render("About.ejs");
+    if(typeof req.user == "undefined"){
+        res.render("About.ejs");
+      }else{
+        res.render("About.ejs" , 
+        {
+          user : req.user
+        });
+      }
     
 });
 
@@ -63,13 +126,24 @@ router.get('/product/:pageNo?',async(req, res) =>{
     }).then((response)=>{
         totalDocs = parseInt(response);
         // console.log(response)
-        res.render("product.ejs" , 
-        {
-            products :products,
-            total :parseInt(totalDocs),
-            pageNo :pageNo,
-            categories :categories
-        });
+        if(typeof req.user == "undefined"){
+            res.render("product.ejs",{
+                products :products,
+                total :parseInt(totalDocs),
+                pageNo :pageNo,
+                categories :categories
+            });
+          }else{
+            res.render("product.ejs" , 
+            {
+                products :products,
+                total :parseInt(totalDocs),
+                pageNo :pageNo,
+                categories :categories,
+                user : req.user
+            });
+          }
+
     })
 
     // console.log(products);
@@ -82,47 +156,101 @@ router.get('/product/select/:category',async(req, res)=>{
     // console.log(categoryName);
     const products = await Product.find( { 'Category.CategoryName' : categoryName });
     console.log(products);
-    res.render("ProductTypes.ejs",{
-        products :products
-    })
+    
+    if(typeof req.user == "undefined"){
+        res.render("ProductTypes.ejs",{
+            products :products
+        });
+      }else{
+        res.render("ProductTypes.ejs" , 
+        {
+        products :products,
+          user : req.user
+        });
+      }
     
 });
 
 
 router.get('/contact',async(req, res) =>{
-    res.render("contact.ejs");
+    if(typeof req.user == "undefined"){
+        res.render("contact.ejs");
+      }else{
+        res.render("contact.ejs" , 
+        {
+          user : req.user
+        });
+      }
 });
 
 router.post('/contact',async(req, res) =>{
-    res.render("contact.ejs");
+   
+    if(typeof req.user == "undefined"){
+        res.render("contact.ejs");
+      }else{
+        res.render("contact.ejs" , 
+        {
+          user : req.user
+        });
+      }
 });
 
 router.get('/forgot_password',async(req, res) =>{
-    res.render("forgot_password.ejs");
+   
+
+    if(typeof req.user == "undefined"){
+        res.render("forgot_password.ejs");
+      }else{
+        res.render("forgot_password.ejs" , 
+        {
+          user : req.user
+        });
+      }
 });
 
 router.post('/forgot_password',async(req, res) =>{
-    res.render("forgot_password.ejs");
+  
+    if(typeof req.user == "undefined"){
+        res.render("forgot_password.ejs");
+      }else{
+        res.render("forgot_password.ejs" , 
+        {
+          user : req.user
+        });
+      }
 });
 
 //Creat a customer
 router.get('/account',async(req, res) =>{
-    res.render("account.ejs",{
-        data : " "
-    });
+
+    if(typeof req.user == "undefined"){
+        res.render("account.ejs");
+      }else{
+        res.render("account.ejs" , 
+        {
+          user : req.user
+        });
+      }
 });
 
-// //Post The New customer
-// router.post('/account',async(req, res) =>{
-//     res.render("account.ejs",{
-//         data : " "
-//     });
-    
-// });
 
 //Get The Customer Info
 router.get('/myAccount',async(req, res) =>{
     res.render("myAccount.ejs");
+
+    if(typeof req.user == "undefined"){
+        res.render("myAccount.ejs");
+      }else{
+        res.render("myAccount.ejs" , 
+        {
+          user : req.user
+        });
+      }
+});
+router.get('/logout',(req, res) =>{
+    req.logOut();
+    req.flash('success_msg',"You Are Logged Out");
+    res.redirect('/');
 });
 
 //Ubdate The Customer Info
@@ -136,23 +264,68 @@ router.get('/productDescription/:id',async(req, res) =>{
     
     // console.log(product);
 
-    res.render("productDescription.ejs" , 
-    {
-        product :product
-    });
+    if(typeof req.user == "undefined"){
+        res.render("productDescription.ejs",{
+            product :product
+        });
+      }else{
+        res.render("productDescription.ejs" , 
+        {
+        product :product,
+          user : req.user
+        });
+      }
 
   
 });
 
 router.get('/search',async(req, res) =>{
-    res.render("search.ejs");
+    if(typeof req.user == "undefined"){
+        res.render("search.ejs",{
+            product :product
+        });
+      }else{
+        res.render("search.ejs" , 
+        {
+        product :product,
+          user : req.user
+        });
+      }
 });
-// :productName/:categoryType/:searchInProductName/:searchInProductDeescription
 
-router.post('/search',(req, res) =>{
+// { productName: 'cacke1',
+//   categoryType: 'Western Sweets',
+//   searchInProductName: '1',
+//   searchInProductDeescription: '1' }
+
+router.post('/search',async(req, res) =>{
     let nameOfProduct = req.body.productName;
-    res.render("search.ejs");
-    console.log(req.body.productName);
+    let typeOfProduct = req.body.categoryType;
+    let SInPN = req.body.searchInProductName;
+    let SInPD= req.body.searchInProductDeescription;
+
+    const products = await Product.find({'Pro_Name':nameOfProduct , 'Category.CategoryName':typeOfProduct});
+
+    // if(!products){
+    //     res.render("search.ejs");
+    //     console.log("error Product not found");
+    //     return;
+    // }else{
+    //     res.render("searchResults.ejs",{
+    //         products :products
+    //     });
+    //     console.log(products);
+    // }
+
+    
+    // if(!product) return res.status(404).render("404.ejs" ,{
+    //     data : 'Product is not found'
+
+    // });
+
+
+    // res.render("search.ejs");
+    // console.log(req.body);
 });
 
 

@@ -37,7 +37,9 @@
             <div>
                 <ul class="navbar-nav ml-auto ">
                 <% if (typeof user !== "undefined" ){%>
-                    <i class="fa fa-user"></i> <%=user%>> </a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myAccount">welcom <%=user.UserName%></a></li>&nbsp;&nbsp;
+                    <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                
                 <%} else{%>
                     <li class="nav-item ml-auto"><a class="nav-link popupbutton" data-show=".popup">
                     <i class="fa fa-user"></i> log in </a></li>
@@ -46,6 +48,7 @@
             </div>
             
         </div>
+       
         <div id="cart" class="cart">
             <!-- cart item -->
             <% if (typeof cartOrders !== "undefined" ){%>
@@ -80,15 +83,16 @@
         </div>
     </div>
     <!-- </div> -->
+    <% include messages.ejs %>  
 </nav>
+
 <!-- End  nav -->
 
 <!-- start login form -->
 <div class="popup">
     <div class="inner">
-        <% include messages.ejs %> 
         <i class="fa fa-window-close" aria-hidden="true"></i>
-        <form action="/api/customers" method="POST">
+        <form action="/" method="POST">
             <h2 class="text-center">login form</h2>
             <div class="form-group">
                 <label for="Email">Email</label>

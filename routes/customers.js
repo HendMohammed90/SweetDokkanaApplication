@@ -84,14 +84,20 @@ router.get('/:pageNo?',ensureAuthenticated,async (req, res) => {
 //   </ul>
 // <%}%>
 
-router.post('/', (req, res, next) => {
-  passport.authenticate('sweetDokkana-signup', {
-    successRedirect: '/',
-    failureRedirect: '/singup',
-    badRequestMessage: 'Somthing Bad has happend.',
-    failureFlash: true
-  })(req, res, next);
-});
+// router.post('/', (req, res, next) => {
+//   passport.authenticate('sweetDokkana-signup', {
+//     successRedirect: '/',
+//     failureRedirect: '/singup',
+//     badRequestMessage: 'Somthing Bad has happend.',
+//     failureFlash: true
+//   })(req, res, next);
+  
+// });
+
+// router.use((req ,res ,next)=>{
+//     res.locals.user= req.user;
+//     next();
+// });
 
 // sign up for customer post request
 router.post('/singup',async(req,res)=>{

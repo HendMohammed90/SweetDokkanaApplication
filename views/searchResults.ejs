@@ -1,0 +1,131 @@
+<% include partials/HomeHeader.ejs%>
+<!-- Main style sheet -->
+<link rel="stylesheet" href="../../assets/css/search.css" />
+</head>
+<body>
+<% include partials/Homenavigation.ejs%>
+
+<!-- Start for header -->
+<header>
+    <div class="overlay d-md-block text-center">
+        <div id="wavePart"></div>
+        <div class="container">
+        <h1 class="display-2"><i class="fas fa-search"></i></h1>
+
+        <button data-scroll="#Search" class="btn  btn-lg mybutton"><i class="fas fa-angle-double-down"></i></button>
+        </div>
+    </div>
+</header>
+<!-- End for header -->
+<br />
+<br />
+<br />
+  
+<!-- start Search -->
+<section id="Search">
+    <div class="container topPart">
+        <div class="row">
+        <div class="col-md-12">
+            <div class="pro-search">
+            <h3 class="text-center ">Search - sweet</h3>  
+            <div class="row">
+                <form action="/search" method="POST" class="col-12">
+                    <p class="heading">search criteria</p>
+                    <div class="form-group ">
+                        <label for="search">search</label>
+                        <input id="nasearchme" class="form-control" placeholder="search Word" type="text" required="" name="productName" value="">
+                    </div>
+                    <div class="form-group">
+                        <select name="categoryType" style="width:50%" value="">
+                        <option value="">All Categories</option>
+                        <option value="Western Sweets">Western Sweets</option>
+                        <option value="oriental">Oriental</option>
+                        <option value="cakes">Cakes</option>
+                        <option value="Pastry">Pastry
+                        </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-name"> search in product name</label>
+                        <input id="product-name" type="checkbox" name="searchInProductName" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description">search in product descriptions</label>
+                        <input id="product-description" type="checkbox" name="searchInProductDeescription" value="1">
+                    </div>
+                    <button class="btn  mybutton"  value="supmit"  type="supmit">search</button>
+                </form>
+            </div>
+            <div class="row">
+                <!-- the search result must be as slider and it should have filters  -->
+            
+                <div class="col-12 search-result">
+                <p class="heading">
+                    Products meeting the search criteria :
+                </p>
+                <div class="d-flex text-center">
+                    <div class="content">
+                    <a href="/productDescription" ><img src="../assets/imgs/imgGallery1.jpeg" class="img-fluid pro-img" width="40%" alt="product1"></a>
+                    <div>
+                        <a href="/productDescription"><h4>sweets</h4></a>
+                        <p>Far far away, behind the word mountains.</p>
+                    </div>
+                    <div class="price d-inline">$17.50
+                        <br>
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        <img src="../assets/imgs/rating.png" class="img-fluid" alt="rtingImg" width="40%">
+                    </div>
+                    </div>
+                    <div class="content">
+                    <a href="/productDescription"><img src="../assets/imgs/imgGallery1.jpeg" class="img-fluid pro-img" width="40%" alt="product1"></a>
+                    <div>
+                        <a href="/productDescription"><h4>sweets</h4></a>
+                        <p>Far far away, behind the word mountains.</p>
+                    </div>
+                    <div class="price d-inline">$17.50
+                        <br>
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        <img src="../assets/imgs/rating.png" class="img-fluid" alt="rtingImg" width="40%">
+                    </div>
+                    </div>
+                    <div class="content">
+                    <a href="/productDescription"><img src="../assets/imgs/imgGallery1.jpeg" class="img-fluid pro-img" width="40%" alt="product1"></a>
+                    <div>
+                        <a href="/productDescription"><h4>sweets</h4></a>
+                        <p>Far far away, behind the word mountains.</p>
+                    </div>
+                    <div class="price d-inline">$17.50
+                        <br>
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        <img src="../assets/imgs/rating.png" class="img-fluid" alt="rtingImg" width="40%">
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="row d-flex">
+                <div class="continue ml-auto">
+                <a href="/product">continue
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+</section>
+
+<!-- End Search -->
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+<% include partials/Homefooter.ejs%>
+
+<% include partials/Homescripts.ejs%>
