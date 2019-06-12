@@ -32,6 +32,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 app.use(fileUpload()); 
 
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 // Express session
 app.use(
     session({
@@ -41,9 +47,6 @@ app.use(
     })
   );
 
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Connect flash
 app.use(flash());
@@ -59,6 +62,7 @@ app.use(function(req, res, next) {
 //cart session
 app.get('*' , function(req ,res,next){
   res.locals.cartOrders = req.session.cartOrders;
+  res.locals.user = req.user;
   next();
 });
 

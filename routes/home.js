@@ -5,6 +5,25 @@ const router = express.Router();
 const {ensureAuthenticated} = require('../config/auth');
 const {Order} = require('../models/orders');
 const {User} = require('../models/user'); 
+const passport = require('passport');
+
+router.use((req, res, next) => {
+  res.locals.user = req.user
+  next()
+});
+
+router.use((req, res, next) => {
+  res.locals.user = req.user;
+  if(!req.session.passport){
+    return next();
+  }
+  User.findById(req.session.passport.user)
+  .then(user =>{
+    req.user = user;
+    next();
+  })
+  next()
+});
 
 router.get('/',ensureAuthenticated,async(req, res) =>{
     const orders = await Order.find();
@@ -18,6 +37,21 @@ router.get('/',ensureAuthenticated,async(req, res) =>{
     // console.log(orders);
     
 });
+
+
+// router.use((req, res, next) => {
+//   res.locals.user = req.user;
+//   if(!req.session.passport){
+//     return next();
+//   }
+//   User.findById(req.session.passport.user)
+//   .then(user =>{
+//     req.user = user;
+//     next();
+//   })
+//   next()
+// });
+
 
 router.get('/me',ensureAuthenticated,async(req ,res)=>{
     // const token =  req.cookies.x-auth-token

@@ -3,19 +3,12 @@
 
 const {Product} = require('../models/products');
 const{Category} = require('../models/categories');
-const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 require('express-async-errors');
-// const passport = require('passport');
-// require('../config/passport-setup')(passport);
-
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const {Customer} = require('../models/customer'); 
-const session = require('express-session')
-router.use(passport.initialize());
-router.use(passport.session());
 
 passport.use('sweetDokkana-signup',
     new LocalStrategy({ usernameField: 'Email',passwordField: 'Password' }, (Email, Password, done) => {
@@ -53,6 +46,20 @@ router.use((req, res, next) => {
     res.locals.user = req.user
     next()
 });
+
+router.use((req, res, next) => {
+  res.locals.user = req.user;
+  if(!req.session.passport){
+    return next();
+  }
+  Customer.findById(req.session.passport.user)
+  .then(user =>{
+    req.user = user;
+    next();
+  })
+  next()
+});
+
 
 
 router.post('/', (req, res, next) => {
@@ -255,6 +262,18 @@ router.get('/logout',(req, res) =>{
 
 //Ubdate The Customer Info
 //=====>
+router.post('/myAccount',async(req, res) =>{
+    res.render("myAccount.ejs");
+
+    if(typeof req.user == "undefined"){
+        res.render("myAccount.ejs");
+      }else{
+        res.render("myAccount.ejs" , 
+        {
+          user : req.user
+        });
+      }
+});
 
 //get main product
 router.get('/productDescription/:id',async(req, res) =>{
@@ -262,7 +281,7 @@ router.get('/productDescription/:id',async(req, res) =>{
 
     if(!product) return res.status(404).send('Product with given ID is not found');
     
-    // console.log(product);
+    console.log(product);
 
     if(typeof req.user == "undefined"){
         res.render("productDescription.ejs",{
@@ -272,7 +291,7 @@ router.get('/productDescription/:id',async(req, res) =>{
         res.render("productDescription.ejs" , 
         {
         product :product,
-          user : req.user
+        user : req.user
         });
       }
 

@@ -3,26 +3,66 @@
 // const auth= require('../middleware/auth');
 // const cookieParser = require('cookie-parser'); 
 const {User, validate} = require('../models/user'); 
-const mongoose = require('mongoose');
 const passport = require('passport');
+// const LocalStrategy = require('passport-local').Strategy;
+const {ensureAuthenticated} = require('../config/auth');
+const {Order} = require('../models/orders');
 require('../config/passport-setup')(passport);
 const express = require('express');
 const router = express.Router();
-const _ =  require('lodash'); 
 const bcrypt = require('bcryptjs');
 require('express-async-errors'); //here we tell the app to use this middelware in every routs
 // router.use(cookieParser());
 
 
-//  login user view 
-router.get('/' ,async (req, res) =>{
-  // res.send("Welcom To our application")
-  res.render("login.ejs",
-  {
-    data : "welcom Admin ^_^ "
-  });
-  // console.log("welcom Admin ^_^");
-})
+// passport.use('AdminPanal-signup',
+// new LocalStrategy({ usernameField: 'Email',passwordField: 'Password' }, (Email, Password, done) => {
+//   // Match user
+//   User.findOne({
+//     Email: Email
+//   }).then(user => {
+//         if (!user) {
+//         return done(null, false, { message: 'That Email is not registered' });
+//         }
+
+//         // Match Password
+//         bcrypt.compare(Password, user.Password, (err, isMatch) => {
+//         if (err) throw err;
+//         if (isMatch) {
+//             console.log(user); //here give me the user 
+//             return done(null, user);
+//         } else {
+//             return done(null, false, { message: 'Password incorrect' });
+//         }
+//         });
+//   }).catch(err => console.log(err));
+// })
+// );
+
+// passport.serializeUser(function(user, done) {
+// console.log(user); // here give me indefiend 
+// done(null, user.id);
+// });
+
+// passport.deserializeUser(function(id, done) {
+// User.findById(id, function(err, user) {
+// done(err, user);
+// });
+// });
+
+
+// router.use((req, res, next) => {
+//   res.locals.user = req.user;
+//   if(!req.session.passport){
+//     return next();
+//   }
+//   User.findById(req.session.passport.user)
+//   .then(user =>{
+//     req.user = user;
+//     next();
+//   })
+//   next()
+// });
 
 
 // login post request 
@@ -34,6 +74,33 @@ router.post('/', (req, res, next) => {
     failureFlash: true
   })(req, res, next);
 });
+
+
+//  login user view 
+router.get('/' ,async (req, res) =>{
+  // res.send("Welcom To our application")
+  res.render("login.ejs",
+  {
+    data : "welcom Admin ^_^ "
+  });
+  
+  // console.log("welcom Admin ^_^");
+})
+
+
+// router.get('/home',async(req, res) =>{
+//   const orders = await Order.find();
+//   console.log(req.user); //==>this give me the user 
+
+//   res.render("index.ejs" , 
+//       {
+//           orders :orders,
+//           name : req.user.name
+//       });
+//   // console.log(orders);
+//   console.log(req.session.passport);
+  
+// });
 
 
 // sign up form 
